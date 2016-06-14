@@ -1,27 +1,18 @@
 .map_container {
-	width: 600px;
+	width: 100%;
 	height: 400px;
 }
 
-#charact-window {
-	min-height:500px;
+.charact-window {
+	min-height:300px;
 }
 
 .fieldlist {
-	margin: 0 0 -1em;
+	margin: 0 0 2em;
 	padding: 0;
 }
 
 .fieldlist li {
 	list-style: none;
 	padding-bottom: 1em;
-}
-
-.charact-window{
-	width: 100%;
-	height:100%;
-}
-
-.list-section{
-	display: inline-block;
 }
