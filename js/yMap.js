@@ -6,10 +6,8 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
     .controller("MarkCtrl", function($scope){
 
-     	$scope.text = "my text";
-
      	function init() {
-        	$scope.countOnMark = 1;
+        	$scope.countOnMark = 4;
 			var map = new ymaps.Map("map_container", {
 		        center: [55.73, 37.58],
 		        zoom: 10
@@ -23,10 +21,9 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
 					build: function () {
 						polygonLayout.superclass.build.call(this);
-
 						var chart = new MarkChart('chartCanvas');
 						chart.chartType = "ring";
-						chart.data = [25,75];
+						chart.data = [8-$scope.countOnMark,+$scope.countOnMark];
 						chart.colors = ['#0FFF2B', '#00ffff'];
 						chart.draw();
 					}
@@ -53,7 +50,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 		    map.geoObjects.add(polygonPlacemark);
 
 		    polygonPlacemark.events.add('contextmenu', function (e) {
-        		polygonPlacemark.balloon.open(e.get('coords'), '123');
+        		polygonPlacemark.balloon.open(e.get('coords'), '');
     		});
 
 		};
