@@ -12,13 +12,13 @@ function MarkChart(canvasElementId) {
     this.labelMargin = 10;
     this.dataValueMargin = 2;
 
-    this.data = new Array();
-    this.colors = new Array();
+    this.data = [];
+    this.colors = [];
 
     this.StrokeStyle = '#fff';
     this.BorderWidth = 2.0;
 
-    this.Start = 75;
+    this.Start = 150;
     this.Total = null;
 
     this.draw = function () {
@@ -27,7 +27,7 @@ function MarkChart(canvasElementId) {
         var minFactor = Math.min(this.widthSizeFactor, this.heightSizeFactor);
 
         this.drawChart(true);
-    }
+    };
 
     this.drawChart = function () {
         var context = this.ctx;
