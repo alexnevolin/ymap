@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 	<title>ymap</title>
 	<meta charset="UTF-8">
 
+<<<<<<< HEAD
 	<link rel="stylesheet" type="text/css" href="style/style.css">
 
 	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&ns=&onload=mapCtrl" type="text/javascript"></script>
@@ -11,5 +12,102 @@
 </head>
 <body>
 	<div id="map_container" class="map_container"></div>
+=======
+	<link href="http://kendo.cdn.telerik.com/2014.2.716/styles/kendo.common.min.css" rel="stylesheet" />
+	<link href="http://kendo.cdn.telerik.com/2014.2.716/styles/kendo.default.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+
+	<script src="http://kendo.cdn.telerik.com/2014.2.716/js/jquery.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="http://kendo.cdn.telerik.com/2014.2.716/js/kendo.ui.core.min.js"></script>
+	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&ns=&onload=mapCtrl" type="text/javascript"></script>
+	<script src="js/common.js" type="text/javascript"></script>
+	<script src="js/charact.js" type="text/javascript"></script>
+</head>
+<body>
+	<div id="map_container" class="map_container">
+	</div>
+	<div id="charact-button" ng-app="Charact">
+		<div ng-controller="CharactCtrl">
+			<div class="charact-section k-content">
+				<button class="k-button" ng-show="!winVisible" ng-click="win.open()">Характеристики</button>
+			</div>
+			<div kendo-window="win" k-title="'Характеристики объектов'"
+				 class="charact-window" k-visible="false"
+				 k-on-open="winVisible = true" k-on-close="winVisible = false">
+				<div class="list-section k-content">
+					<ul class="fieldlist">
+						<li>
+							<input type="radio" name="colour-mark" id="colourm1" class="k-radio" checked="checked">
+							<label class="k-radio-label" for="colourm1">Класс дома</label>
+						</li>
+						<li>
+							<input type="radio" name="colour-mark" id="colourm2" class="k-radio">
+							<label class="k-radio-label" for="colourm2">Материал стен дома</label>
+						</li>
+						<li>
+							<input type="radio" name="colour-mark" id="colourm3" class="k-radio">
+							<label class="k-radio-label" for="colourm3">Максимальная этажность  дома</label>
+						</li>
+						<li>
+							<input type="radio" name="colour-mark" id="colourm4" class="k-radio">
+							<label class="k-radio-label" for="colourm4">Год постройки дома</label>
+						</li>
+						<li>
+							<input type="radio" name="colour-mark" id="colourm5" class="k-radio">
+							<label class="k-radio-label" for="colourm5">Когорта дома Объекта </label>
+						</li>
+					</ul>
+					<ul class="fieldlist">
+						<li>
+							<input type="radio" name="number-mark" id="numberm1" class="k-radio" checked="checked">
+							<label class="k-radio-label" for="numberm1">Количество Аналогов/Объявлений в доме</label>
+						</li>
+						<li>
+							<input type="radio" name="number-mark" id="numberm2" class="k-radio">
+							<label class="k-radio-label" for="numberm2">Максимальная этажность  дома</label>
+						</li>
+						<li>
+							<input type="radio" name="number-mark" id="numberm3" class="k-radio">
+							<label class="k-radio-label" for="numberm3">Год постройки дома</label>
+						</li>
+						<li>
+							<input type="radio" name="number-mark" id="numberm4" class="k-radio">
+							<label class="k-radio-label" for="numberm4">Количество описанных квартир в доме по Росреестру</label>
+						</li>
+						<li>
+							<input type="radio" name="number-mark" id="numberm5" class="k-radio">
+							<label class="k-radio-label" for="numberm5">Средняя удельная цена Аналогов/Объявлений (тыс.руб.)</label>
+						</li>
+						<li>
+							<input type="radio" name="number-mark" id="numberm6" class="k-radio">
+							<label class="k-radio-label" for="numberm6">Удельная Кадастровая стоимость (тыс.руб.)</label>
+						</li>
+					</ul>
+					<ul class="fieldlist">
+						<li>
+							<input type="radio" name="diagram-mark" id="diagramm1" class="k-radio" checked="checked">
+							<label class="k-radio-label" for="diagramm1">Доли Аналогов/Объявлений в доме по комнатности (1, 2, 3 , 4+)</label>
+						</li>
+						<li>
+							<input type="radio" name="diagram-mark" id="diagramm2" class="k-radio">
+							<label class="k-radio-label" for="diagramm2">Доли Аналогов/Объявлений в доме по классу (дихотомия: доминирующий класс и остальные)</label>
+						</li>
+					</ul>
+					<ul class="fieldlist">
+						<li>
+							<input type="radio" name="special-mark" id="specialm1" class="k-radio" checked="checked">
+							<label class="k-radio-label" for="specialm1">В доме выданы кредиты: да/нет (информация о выданных кредитах в доме)</label>
+						</li>
+						<li>
+							<input type="radio" name="special-mark" id="specialm2" class="k-radio">
+							<label class="k-radio-label" for="specialm2">Описание дома рассогласовано: да/нет (характеристики рассогласованности)</label>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+>>>>>>> 96ecd1660fc9e1bd8a29814e8a8d7303ab82519f
 </body>
 </html>
