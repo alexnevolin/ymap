@@ -1,9 +1,4 @@
 .map_container {
-<<<<<<< HEAD
-	width: 600px;
-	height: 400px;
-}
-=======
 	width: 100%;
 	height: 400px;
 }
@@ -22,7 +17,7 @@
 	padding-bottom: 1em;
 }
 
-.placemark_layout_container { 
+.placemark_layout_container {
 	position: relative;
 	font-family: Georgia;
 	font-size: 16px;
@@ -35,7 +30,7 @@
     position: relative;
     background: #ffffff;
     border: 4px solid #ff6600;
-    width: 50px; 
+    width: 50px;
     height: 50px;
     position: absolute;
     left: -28px;
@@ -66,14 +61,11 @@
     margin-left: -16px;
 }
 
-.inner_chart {
-	border: 14px #0FFF2B solid;
-	border-radius: 50%;
-	width: 36%;
-	height: 36%;
-	position: relative;
-	top: 2px;
-	left: 2px;
+#chartCanvas {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    z-index: 1;
 }
-/* Polygon mark end*/
->>>>>>> 96ecd1660fc9e1bd8a29814e8a8d7303ab82519f
+
+
