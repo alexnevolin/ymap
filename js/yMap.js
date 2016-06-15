@@ -15,7 +15,22 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 		        zoom: 10
 	    	});
 	    	
-	    	var polygonLayout = ymaps.templateLayoutFactory.createClass('<div class="placemark_layout_container"><div class="polygon_layout" style="position: relative;"><span style="position: relative; top: 13.5px;" ng-click="alert("123")">{{ properties.chartCount }}</span><canvas id="chartCanvas" width="80%" height="80% style="position:relative; z-index:10"></canvas></div></div>');
+	    	var polygonLayout = ymaps.templateLayoutFactory.createClass('<div class="placemark_layout_container">' +
+					'<div class="polygon_layout" style="position: relative;">' +
+						'<span style="position: relative; top: 13.5px;" ng-click="alert("123")">{{ properties.chartCount }}</span>' +
+						'<canvas id="chartCanvas" width="90" height="90"></canvas>' +
+					'</div></div>', {
+
+					build: function () {
+						polygonLayout.superclass.build.call(this);
+
+						var chart = new MarkChart('chartCanvas');
+						chart.chartType = "ring";
+						chart.data = [25,75];
+						chart.colors = ['#0FFF2B', '#00ffff'];
+						chart.draw();
+					}
+			});
 
 			var balloonLayout = '<div style="width:200px; height: 100px;"><p><span>Количество: ' + $scope.countOnMark +'<br>Название ЖК: название</span></p></div>';
 

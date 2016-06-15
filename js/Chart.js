@@ -105,3 +105,4 @@ function MarkChart(canvasElementId) {
         context.restore();
     }
 }
+
