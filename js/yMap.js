@@ -6,22 +6,22 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
     .controller("MarkCtrl", function($scope){
 
-     	var myMap,
-     		myPlacemark;
+     	$scope.text = "my text";
 
      	function init() {
         	$scope.countOnMark = 1;
-        	console.log("Создание карты!!!")
 			var map = new ymaps.Map("map_container", {
 		        center: [55.73, 37.58],
 		        zoom: 10
 	    	});
 	    	
-	    	var polygonLayout = ymaps.templateLayoutFactory.createClass('<div class="placemark_layout_container"><div class="polygon_layout"><canvas id="chartCanvas" width="80%" height="80%"><span>{{ properties.chartCount }}</span></canvas></div></div>');
+	    	var polygonLayout = ymaps.templateLayoutFactory.createClass('<div class="placemark_layout_container"><div class="polygon_layout" style="position: relative;"><span style="position: relative; top: 13.5px;" ng-click="alert("123")">{{ properties.chartCount }}</span><canvas id="chartCanvas" width="80%" height="80% style="position:relative; z-index:10"></canvas></div></div>');
+
+			var balloonLayout = '<div style="width:200px; height: 100px;"><p><span>Количество: ' + $scope.countOnMark +'<br>Название ЖК: название</span></p></div>';
 
 			polygonPlacemark = new ymaps.Placemark(
 		        [55.66, 37.55], {
-		            hintContent: 'Метка',
+		            balloonContent: balloonLayout,
 		            name: 'my name',
 		            chartCount: $scope.countOnMark
 		        }, {
@@ -37,10 +37,16 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
 		    map.geoObjects.add(polygonPlacemark);
 
+		    polygonPlacemark.events.add('contextmenu', function (e) {
+        		polygonPlacemark.balloon.open(e.get('coords'), '123');
+    		});
+
 		};
 
 		$scope.update = function() {
-			polygonPlacemark.properties.set("chartCount",$scope.countOnMark)
+			balloonLayout = '<div style="width:200px; height: 100px;"><p><span>Количество: ' + $scope.countOnMark +'<br>Название ЖК: название</span></p></div>';
+			polygonPlacemark.properties.set("chartCount",$scope.countOnMark);
+			polygonPlacemark.properties.set("balloonContent", balloonLayout);
 		};
 		ymaps.ready(init);
     });
