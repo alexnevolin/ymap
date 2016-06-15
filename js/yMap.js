@@ -28,6 +28,11 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 						chart.draw();
 					}
 			});
+			ButtonLayout = ymaps.templateLayoutFactory.createClass(
+					"<div class='my-button {% if state.selected %}my-button-selected{% endif %}'>" +
+					"{{data.content}}" +
+					"</div>"
+			);
 
 			var balloonLayout = '<div style="width:200px; height: 100px;"><p><span>Количество: ' + $scope.countOnMark +'<br>Название ЖК: название</span></p></div>';
 
@@ -47,7 +52,19 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 		        }
 		    );
 
-		    map.geoObjects.add(polygonPlacemark);
+			button = new ymaps.control.Button({
+				data: {
+					content: "Характеристики"
+				},
+				options: {
+					layout: ButtonLayout
+				}
+			});
+
+			map.geoObjects.add(polygonPlacemark);
+			map.controls.add(button, {
+				float: 'right'
+			});
 
 		    polygonPlacemark.events.add('contextmenu', function (e) {
         		polygonPlacemark.balloon.open(e.get('coords'), '');
