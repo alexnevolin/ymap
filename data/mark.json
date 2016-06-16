@@ -1,0 +1,53 @@
+{
+	"secondary_housing" : true,
+	"hous_properties" : [
+		{
+			"name_zk": "test name zk",   				
+			"precision_geocoordinates": "1", 			
+			"wall_material" : "1", 					
+			"overlap" : "1", 							
+			"max_floor" : "1", 						
+			"build_year" : "1", 						
+			"planned_demolition" : "1", 				
+			"construction_series" : "1", 				
+			"local_home_type" : "1", 					
+			"home_class" : "1", 						
+			"cohort" : "1", 							
+			"security" : "1", 						
+			"parking" : "1", 							
+			"first_floor_living" : "1", 				
+			"ceiling_height" : "1", 					
+			"heating" : "1", 							
+			"mismatching_ads" : "1", 					
+			"mismatching_ads_percent" : "1", 			
+			"count_of_credits" : "1", 				
+			"credits_amount" : "1", 					
+			"count_apart_in_ros_registry" : "1", 		
+			"unit_price" : "1"
+		},
+		{
+			"name_zk": "test name zk2",   				
+			"precision_geocoordinates": "1", 			
+			"wall_material" : "1", 					
+			"overlap" : "1", 							
+			"max_floor" : "1", 						
+			"build_year" : "1", 						
+			"planned_demolition" : "1", 				
+			"construction_series" : "1", 				
+			"local_home_type" : "1", 					
+			"home_class" : "1", 						
+			"cohort" : "1", 							
+			"security" : "1", 						
+			"parking" : "1", 							
+			"first_floor_living" : "1", 				
+			"ceiling_height" : "1", 					
+			"heating" : "1", 							
+			"mismatching_ads" : "1", 					
+			"mismatching_ads_percent" : "1", 			
+			"count_of_credits" : "1", 				
+			"credits_amount" : "1", 					
+			"count_apart_in_ros_registry" : "1", 		
+			"unit_price" : "1"
+		}
+	]
+}

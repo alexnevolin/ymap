@@ -4,7 +4,14 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
     })
 
-    .controller("MarkCtrl", function($scope){
+    .controller("MarkCtrl", function($scope,$http){
+
+    	$http.get('../data/mark.json').success(function(data) {
+            console.log("My data...");
+            console.log(data);
+        });
+
+        //console.log($scope.markData);
 
      	function init() {
         	$scope.countOnMark = 4;
