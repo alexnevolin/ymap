@@ -1,4 +1,5 @@
 function MarkChart(canvasElementId) {
+    // set properties of chart
     var canvas = document.getElementById(canvasElementId);
     this.ctx = canvas.getContext('2d');
     this.width = this.ctx.canvas.width;
@@ -29,6 +30,7 @@ function MarkChart(canvasElementId) {
         this.drawChart(true);
     };
 
+    // draw Chart
     this.drawChart = function () {
         var context = this.ctx;
         context.lineWidth = this.BorderWidth;
@@ -67,11 +69,11 @@ function MarkChart(canvasElementId) {
         var endAngle = 0;
         var incAngleBy = 0;
 
+        // draw chart in canvas
         for (var i = 0; i < dataLen; i++) {
             context.beginPath();
             incAngleBy = this.data[i] * doublePI / dataSum;
             endAngle = currentAngle + incAngleBy;
-
 
             context.moveTo(centerX, centerY);
             context.arc(centerX, centerY, radius, currentAngle, endAngle, false);
@@ -92,6 +94,7 @@ function MarkChart(canvasElementId) {
 
         var ringCenterRadius = radius / 2;
 
+        // "cut" the central part from chart
         context.save();
 
         context.beginPath();
