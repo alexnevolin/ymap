@@ -103,3 +103,37 @@
 .controlFeatures{
     margin: 0 0 0 20px;
 }
+
+/* square mark */
+.sq_mark {
+    width: 56px;
+    height: 56px;
+    border-radius: 4px;
+    border: 14px solid #3AA0EF;
+    box-sizing: border-box;
+    background: #fff;
+}
+.sq_mark:after {
+    content:"";
+    width: 0px;
+    height: 0px;
+    border-top: 30px solid #3AA0EF;
+    border-bottom: 30px solid transparent;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    position: relative;
+    bottom: 40px;
+    left: 4px;
+}
+.sq_text {
+    position: relative; 
+    left: 9px; 
+    top: 5px; 
+    font-weight: bold;
+}
+.sq_canvas {
+    position: relative; 
+    bottom: 48px; 
+    right: 30px;
+}
+/* square mark end*/

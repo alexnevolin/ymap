@@ -14,6 +14,39 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
         });
 
 		var markNum = 0;
+
+		function putObjects(map, onjectsJSON) {
+
+			var chartBuild = function() {
+				squareLayout.superclass.build.call(this);
+				var chart = new MarkChart("obj1");
+				chart.chartType = "ring";
+				chart.data = [+4,8-4];
+				chart.colors = ['#0FFF2B', '#00ffff'];
+				chart.draw();
+			}
+
+			var squareLayout = ymaps.templateLayoutFactory.createClass('<div class="sq_mark"><span class="sq_text">4</span><canvas id="'+'obj1'+'" width="88" height="88" class="sq_canvas"></canvas></div>', {
+				build: chartBuild
+			});
+
+			var polygonPlacemark = new ymaps.Placemark(
+		        [55.8, 37.8], {
+		            hintContent: 'Метка'
+		        }, {
+		            iconLayout: squareLayout,
+		            iconShape: {
+		                type: 'Rectangle',
+		                coordinates: [
+		                    [-25, -25], [25, 25]
+		                ]
+		            }
+		        }
+		    );
+
+			map.geoObjects.add(polygonPlacemark);
+		}
+
         function putMarks(map, marksJSON) {
         	console.log('Расставить метки');
         	
@@ -94,6 +127,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 			$scope.map = map;
 
 			putMarks($scope.map,$scope.marksJSON);
+			putObjects($scope.map,null);
 
 			ymaps.util.augment(CustomControlClass, ymaps.collection.Item, {
 				onAddToMap: function (map) {
