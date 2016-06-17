@@ -2,15 +2,84 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
     .controller("MarkCtrl", function($scope,$http){
 
+    	$scope.marksJSON;
+    	$scope.idList = [];
+    	$scope.counterList = [];
+    	$scope.placemarkList = [];
+
+    	$scope.update = null;
+
     	$http.get('../data/mark.json').success(function(data) {
-            console.log("My data...");
-            console.log(data);
+            $scope.marksJSON = data;
         });
 
-        //console.log($scope.markData);
+		var markNum = 0;
+        function putMarks(map, marksJSON) {
+        	console.log('Расставить метки');
+        	
+        	for (var i = 0; i < marksJSON.houses.length; i++) {
+        		var id = marksJSON.houses[i].mark_id;
+        		var counter = marksJSON.houses[i].mark_counter;
+        		var coords = marksJSON.houses[i].mark_coords;
+        		$scope.idList[i] = marksJSON.houses[i].mark_id;  	
+				$scope.counterList[i] = marksJSON.houses[i].mark_counter; 
+
+				var markTemplate = '<div class="placemark_layout_container">' +
+				 		'<div class="polygon_layout">' +
+				 			'<span style="position: relative; top: 13.5px;" ng-click="alert("123")">{{ properties.chartCount }}</span>' +
+				 			'<canvas id="'+id+'" width="90" height="90" style="position: relative; bottom: 39px; right: 20.5px;"></canvas>' +
+						'</div></div>';
+
+				var chartBuild = function() {
+					polygonLayout.superclass.build.call(this);
+					
+					var chart = new MarkChart($scope.idList[markNum]);
+					 chart.chartType = "ring";
+
+					 chart.data = [+$scope.counterList[markNum],8-$scope.counterList[markNum]];
+					 chart.colors = ['#0FFF2B', '#00ffff'];
+					 chart.draw();
+					if (markNum < $scope.marksJSON.houses.length+1)
+						markNum++;
+					else markNum = 0;
+				}
+
+				var polygonLayout = ymaps.templateLayoutFactory.createClass(markTemplate, {
+					build: chartBuild
+				});
+
+				var balloonLayout = '<div style="width:200px; height: 100px;"><p><span>Количество: ' + counter +'<br>Название ЖК: название</span></p></div>';
+
+				var polygonPlacemark = new ymaps.Placemark(
+			        [coords.x, coords.y], {
+			            // balloonContent: balloonLayout,
+			            name: 'my name',
+			            chartCount: counter
+			        }, {
+			            iconLayout: polygonLayout,
+			            iconShape: {   
+			                type: 'Polygon',
+			                coordinates: [
+			                    [[-28,-76],[28,-76],[28,-20],[12,-20],[0,-4],[-12,-20],[-28,-20]]
+			                ]
+			            }
+			        }
+			    );
+
+				polygonPlacemark.events.add('contextmenu', function (e) {
+        			console.log("Показать балун");
+        			//polygonPlacemark.balloon.open(e.get('coords'), 'asd');
+    			});
+
+    			$scope.placemarkList[i] = polygonPlacemark;
+
+			   	map.geoObjects.add(polygonPlacemark);
+		   }
+
+        }
 
      	function init() {
-        	$scope.countOnMark = 4;
+     		//console.log("INIT");
 			var map = new ymaps.Map("map_container", {
 		        center: [55.73, 37.58],
 		        zoom: 10
@@ -21,6 +90,10 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 				this._$content = null;
 				this._geocoderDeferred = null;
 			};
+
+			$scope.map = map;
+
+			putMarks($scope.map,$scope.marksJSON);
 
 			ymaps.util.augment(CustomControlClass, ymaps.collection.Item, {
 				onAddToMap: function (map) {
@@ -98,7 +171,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 						visible: false,
 						title: "Задать характеристики для отображения меток",
 						actions: [
-								"Close"
+							"Close"
 						],
 						close: onClose
 					}).data("kendoWindow").center();
@@ -130,43 +203,9 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 						this._$content.text(geoObjectData.metaDataProperty.GeocoderMetaData.text);
 					}
 				}*/
+
+
 			});
-
-	    	var polygonLayout = ymaps.templateLayoutFactory.createClass('<div class="placemark_layout_container">' +
-					'<div class="polygon_layout">' +
-						'<span style="position: relative; top: 13.5px;" ng-click="alert("123")">{{ properties.chartCount }}</span>' +
-						'<canvas id="chartCanvas" width="90" height="90"></canvas>' +
-					'</div></div>', {
-
-					build: function () {
-						polygonLayout.superclass.build.call(this);
-						var chart = new MarkChart('chartCanvas');
-						chart.chartType = "ring";
-						chart.data = [8-$scope.countOnMark,+$scope.countOnMark];
-						chart.colors = ['#0FFF2B', '#00ffff'];
-						chart.draw();
-					}
-			});
-
-			var balloonLayout = '<div style="width:200px; height: 100px;"><p><span>Количество: ' + $scope.countOnMark +'<br>Название ЖК: название</span></p></div>';
-
-			polygonPlacemark = new ymaps.Placemark(
-		        [55.66, 37.55], {
-		            balloonContent: balloonLayout,
-		            name: 'my name',
-		            chartCount: $scope.countOnMark
-		        }, {
-		            iconLayout: polygonLayout,
-		            iconShape: {   
-		                type: 'Polygon',
-		                coordinates: [
-		                    [[-28,-76],[28,-76],[28,-20],[12,-20],[0,-4],[-12,-20],[-28,-20]]
-		                ]
-		            }
-		        }
-		    );
-
-			map.geoObjects.add(polygonPlacemark);
 
 			var buttonControl = new CustomControlClass();
 			map.controls.add(buttonControl, {
@@ -176,18 +215,15 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 					right: 10
 				}
 			});
-
-			polygonPlacemark.events.add('contextmenu', function (e) {
-        		polygonPlacemark.balloon.open(e.get('coords'), '');
-    		});
 		}
 
-		$scope.update = function() {
-			balloonLayout = '<div style="width:200px; height: 100px;"><p><span>Количество: ' + $scope.countOnMark +'<br>Название ЖК: название</span></p></div>';
-			polygonPlacemark.properties.set("chartCount",$scope.countOnMark);
-			polygonPlacemark.properties.set("balloonContent", balloonLayout);
+		$scope.update = function(markNum) {
+			// balloonLayout = '<div style="width:200px; height: 100px;"><p><span>Количество: ' + $scope.countOnMark +'<br>Название ЖК: название</span></p></div>';
+			// polygonPlacemark.properties.set("chartCount",$scope.countOnMark);
+			// $scope.placemarkList[markNum].properties.set("chartCount",$scope.counterList[markNum]);
 		};
 		ymaps.ready(init);
+
     });
 
 
