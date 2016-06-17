@@ -205,8 +205,10 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 							myWindow.data("kendoWindow").refresh();
 					});
 
-					$("body").click(function(){
-							myWindow.data("kendoWindow").refresh();
+					$("#map_container").click(function(){
+							if($('#features').css('display') == "none"){
+								myWindow.data("kendoWindow").close();
+							}
 					});
 
 					$('#sendFeatures').click(function(){
