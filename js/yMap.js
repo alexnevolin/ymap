@@ -153,7 +153,10 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 										'<li><input type="radio" name="special-mark" id="specialm2" class="k-radio">'+
 											'<label class="k-radio-label" for="specialm2">Описание дома рассогласовано: да/нет (характеристики рассогласованности)</label></li>'+
 									'</ul>'+
-					        '</div>').appendTo(parentDomContainer);
+					        '</div>'+
+							'<button class="k-button controlFeatures" id="resetFeatures">Отменить</button>'+
+							'<button class="k-button controlFeatures" id="sendFeatures">Показать</button>'+
+					'</div>').appendTo(parentDomContainer);
 
 					var myWindow = $("#window"),
 						features = $("#features");
