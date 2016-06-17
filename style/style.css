@@ -72,9 +72,9 @@
     background-color: #e6e6e6;
 }
 /*Window with features*/
-/*.k-window{
-    height: 400px;
-}*/
+.k-window{
+    height: 300px;
+}
 
 .features-window {
     display: block;
