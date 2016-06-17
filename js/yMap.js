@@ -15,6 +15,24 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
 		var markNum = 0;
 
+		function putLandmarks(map, onjectsJSON) {
+			var landmarkLayout = ymaps.templateLayoutFactory.createClass('<div class="landmark"><div class="landmark_center"></div></div>', {});
+			var landmark = new ymaps.Placemark(
+		        [55.7, 37.85], {
+		            hintContent: 'Ориентир'
+		        }, {
+		            iconLayout: landmarkLayout,
+		            iconShape: {
+		                type: 'Rectangle',
+		                coordinates: [
+		                    [-25, -25], [25, 25]
+		                ]
+		            }
+		        }
+		    );
+			map.geoObjects.add(landmark);
+		}
+
 		function putObjects(map, onjectsJSON) {
 
 			var chartBuild = function() {
@@ -128,6 +146,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
 			putMarks($scope.map,$scope.marksJSON);
 			putObjects($scope.map,null);
+			putLandmarks($scope.map,null);
 
 			ymaps.util.augment(CustomControlClass, ymaps.collection.Item, {
 				onAddToMap: function (map) {

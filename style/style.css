@@ -137,3 +137,21 @@
     right: 30px;
 }
 /* square mark end*/
+/* landmark */
+.landmark {
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border-radius: 100% 100% 0% 100%;
+    transform: rotateZ(45deg);
+    border: 5px solid #354151;
+}
+.landmark_center {
+    width: 25px;
+    height: 25px;
+    background: #354151;
+    border-radius: 100%;
+    margin-top: 13px;
+    margin-left: 13px;
+}
+/* landmark end*/
