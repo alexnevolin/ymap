@@ -16,6 +16,41 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
 		var markNum = 0;
 
+		function putHomemarks(map, homeJSON) {
+			var chartBuild = function() {
+				homemarkLayout.superclass.build.call(this);
+				var chart = new MarkChart("home1");
+				chart.chartType = "ring";
+				chart.data = [+4,8-4];
+				chart.colors = ['#0FFF2B', '#00ffff'];
+				chart.draw();
+			}
+
+			var homemarkTemplate = '<div class="placemark_layout_container">' +
+				 		'<div class="home_layout">' +
+				 			'<span style="position: relative; top: 16px;">4</span>' +
+				 			'<canvas id="'+'home1'+'" width="90" height="90" style="position: relative; bottom: 39px; right: 20px;"></canvas>' +
+						'</div></div>';
+
+			var homemarkLayout = ymaps.templateLayoutFactory.createClass(homemarkTemplate, {build: chartBuild});
+
+			var homemark = new ymaps.Placemark(
+		        [55.65, 37.77], {
+		            hintContent: 'Ориентир'
+		        }, {
+		            iconLayout: homemarkLayout,
+		            iconShape: {
+		                type: 'Rectangle',
+		                coordinates: [
+		                    [-25, -25], [25, 25]
+		                ]
+		            }
+		        }
+		    );
+			map.geoObjects.add(homemark);
+		};
+
+
 		function putLandmarks(map, onjectsJSON) {
 			var landmarkLayout = ymaps.templateLayoutFactory.createClass('<div class="landmark"><div class="landmark_center"></div></div>', {});
 			var landmark = new ymaps.Placemark(
@@ -148,6 +183,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 			putMarks($scope.map,$scope.marksJSON);
 			putObjects($scope.map,null);
 			putLandmarks($scope.map,null);
+			putHomemarks($scope.map,null);
 
 			ymaps.util.augment(CustomControlClass, ymaps.collection.Item, {
 				onAddToMap: function (map) {
