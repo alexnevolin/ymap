@@ -7,10 +7,15 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
     	$scope.counterList = [];
     	$scope.placemarkList = [];
 		$scope.featuresList = [];
+		$scope.colour = "";
+		$scope.chart = "";
+		$scope.number = "";
+		$scope.specEvent = false;
+
 
     	$scope.update = null;
 
-    	$http.get('../data/mark.json').success(function(data) {
+    	$http.get('../data/mark2.json').success(function(data) {
             $scope.marksJSON = data;
         });
 
@@ -124,7 +129,13 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
         		var counter = marksJSON.houses[i].mark_counter;
         		var coords = marksJSON.houses[i].mark_coords;
         		$scope.idList[i] = marksJSON.houses[i].mark_id;
-				$scope.counterList[i] = marksJSON.houses[i].mark_counter;
+
+				var feature = marksJSON.houses[i];
+
+
+
+
+					$scope.counterList[i] = marksJSON.houses[i].mark_counter;
 
 				var markTemplate = '<div class="placemark_layout_container">' +
 				 		'<div class="polygon_layout">' +
@@ -156,7 +167,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 			        [coords.x, coords.y], {
 			            // balloonContent: balloonLayout,
 			            name: 'my name',
-			            chartCount: counter
+			            chartCount: $scope.number
 			        }, {
 			            iconLayout: polygonLayout,
 			            iconShape: {
@@ -179,6 +190,31 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 		   }
 
         }
+
+		function bindFeatures ()  {
+			var data =  $scope.marksJSON;
+			var features =  $scope.featuresList;
+
+			for (var keyMark in data) {
+
+				for(var key in data[keyMark]) {
+					if(key == features[0]){
+						$scope.colour = features[key];
+					}
+
+					if(key == features[1]){
+						$scope.number = features[key];
+					}
+
+					if(key == features[2]){
+						$scope.chart = features[key];
+					}
+					if(key == features[3]){
+						$scope.specEvent = features[key];
+					}
+				}
+			}
+		}
 
      	function init() {
      		//console.log("INIT");
@@ -285,7 +321,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 							}
 					});
 
-					$('#window').on('click','#sendFeatures', function(){
+					function defaultFeatures (){
 						var vals = $('.k-radio').map(function(i,el){
 							if($(el).prop('checked')){
 								return $(el).val();
@@ -293,6 +329,12 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 						}).get();
 						$scope.featuresList = vals;
 						console.log($scope.featuresList);
+					}
+
+					defaultFeatures();
+
+					$('#window').on('click','#sendFeatures', function(){
+						defaultFeatures()
 					});
 
 					function onClose() {
