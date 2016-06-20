@@ -169,3 +169,63 @@
     position: absolute;
 }
 /* home mark end*/
+/* zhil complex mark start*/
+.zc_mark {
+    background: #3A30FF;
+    width: 30px;
+    height: 50px;
+    position: relative;
+}
+.zc_mark:before, .zc_mark:after {
+    border: 25px solid transparent;
+    content: "";
+    position: absolute;
+    z-index: 10;
+}
+.zc_mark:before {
+    right:100%;
+    border-right: 20px solid #382FFF;
+}
+.zc_mark:after {
+    left:100%;
+    border-left: 20px solid #382FFF;
+}
+.zc_mark_hend {
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top: 30px solid #382FFF;
+    position: absolute;
+    top: 100%;
+    left: 22%;
+}
+.zc_counter {
+    position: absolute;
+    display: inline-block;
+    border-radius: 100%;
+    width: 30px;
+    height: 24px;
+    background: #FFF;
+    top: 6px;
+    text-align: center;
+    margin-top: 3px;
+    padding-top: 6px;
+    font-weight: bold;
+}
+.zc_canvas {
+    position: absolute; 
+    top: -15px; 
+    right: -25px; 
+    z-index: 20;
+}
+.zc_trigger {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    z-index: 20;
+    background: #FF510C;
+    border: 2px solid #FFF;
+    border-radius: 100%;
+    left: 100%;
+}
+/* zhil complex mark end*/

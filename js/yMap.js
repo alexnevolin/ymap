@@ -16,6 +16,21 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
 		var markNum = 0;
 
+		function putZCMarks(map, zcJSON) {
+			var zcTemplate = '<div class="zc_mark"><canvas id="zc1" class="zc_canvas" width="80" height="80"></canvas><div class="zc_mark_hend"></div><span class="zc_counter">2</span><div class="zc_trigger"></div></div>';
+			var chartBuild = function() {
+				zcLayout.superclass.build.call(this);
+				var chart = new MarkChart("zc1");
+				chart.chartType = "ring";
+				chart.data = [+2,8-2];
+				chart.colors = ['#FF0410', '#4772FF'];
+				chart.draw();
+			}
+			var zcLayout = ymaps.templateLayoutFactory.createClass(zcTemplate, {build: chartBuild});
+			var zcmark = new ymaps.Placemark([55.65, 37.6], {hintContent: 'Жилой комплекс'}, {iconLayout: zcLayout,});
+			map.geoObjects.add(zcmark);
+		};
+
 		function putHomemarks(map, homeJSON) {
 			var chartBuild = function() {
 				homemarkLayout.superclass.build.call(this);
@@ -184,6 +199,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 			putObjects($scope.map,null);
 			putLandmarks($scope.map,null);
 			putHomemarks($scope.map,null);
+			putZCMarks($scope.map,null);
 
 			ymaps.util.augment(CustomControlClass, ymaps.collection.Item, {
 				onAddToMap: function (map) {
@@ -313,5 +329,3 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 		ymaps.ready(init);
 
     });
-
-
