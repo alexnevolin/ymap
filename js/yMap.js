@@ -6,6 +6,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
     	$scope.idList = [];
     	$scope.counterList = [];
     	$scope.placemarkList = [];
+		$scope.featuresList = [];
 
     	$scope.update = null;
 
@@ -67,13 +68,13 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
         function putMarks(map, marksJSON) {
         	console.log('Расставить метки');
-        	
+
         	for (var i = 0; i < marksJSON.houses.length; i++) {
         		var id = marksJSON.houses[i].mark_id;
         		var counter = marksJSON.houses[i].mark_counter;
         		var coords = marksJSON.houses[i].mark_coords;
-        		$scope.idList[i] = marksJSON.houses[i].mark_id;  	
-				$scope.counterList[i] = marksJSON.houses[i].mark_counter; 
+        		$scope.idList[i] = marksJSON.houses[i].mark_id;
+				$scope.counterList[i] = marksJSON.houses[i].mark_counter;
 
 				var markTemplate = '<div class="placemark_layout_container">' +
 				 		'<div class="polygon_layout">' +
@@ -83,7 +84,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
 				var chartBuild = function() {
 					polygonLayout.superclass.build.call(this);
-					
+
 					var chart = new MarkChart($scope.idList[markNum]);
 					 chart.chartType = "ring";
 
@@ -108,7 +109,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 			            chartCount: counter
 			        }, {
 			            iconLayout: polygonLayout,
-			            iconShape: {   
+			            iconShape: {
 			                type: 'Polygon',
 			                coordinates: [
 			                    [[-28,-76],[28,-76],[28,-20],[12,-20],[0,-4],[-12,-20],[-28,-20]]
@@ -238,18 +239,8 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 								return $(el).val();
 							}
 						}).get();
-						/*$.ajax(
-								{
-									type: "POST",
-									url: "/",
-									dataType: "json",
-									data: {chArr: vals},
-									cashe: false,
-									success: function(data){
-									}
-								});
-						return false;*/
-						console.log(vals);
+						$scope.featuresList = vals;
+						console.log($scope.featuresList);
 					});
 
 					function onClose() {
@@ -265,33 +256,6 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 						close: onClose
 					}).data("kendoWindow");
 					}
-
-				/*_createRequest: function() {
-					var lastCenter = this._lastCenter = this.getMap().getCenter().join(',');
-					// Запрашиваем информацию о месте по координатам центра карты.
-					ymaps.geocode(this._lastCenter, {
-						// Указываем, что ответ должен быть в формате JSON.
-						json: true,
-						// Устанавливаем лимит на кол-во записей в ответе.
-						results: 1
-					}).then(function (result) {
-						// Будем обрабатывать только ответ от последнего запроса.
-						if (lastCenter == this._lastCenter) {
-							this._onServerResponse(result);
-						}
-					}, this);
-				},
-
-				_onServerResponse: function (result) {
-					// Данные от сервера были получены и теперь их необходимо отобразить.
-					// Описание ответа в формате JSON.
-					var members = result.GeoObjectCollection.featureMember,
-							geoObjectData = (members && members.length) ? members[0].GeoObject : null;
-					if (geoObjectData) {
-						this._$content.text(geoObjectData.metaDataProperty.GeocoderMetaData.text);
-					}
-				}*/
-
 
 			});
 
