@@ -112,6 +112,7 @@
     border: 14px solid #3AA0EF;
     box-sizing: border-box;
     background: #fff;
+    position: relative;
 }
 .sq_mark:after {
     content:"";
@@ -121,8 +122,8 @@
     border-bottom: 30px solid transparent;
     border-right: 10px solid transparent;
     border-left: 10px solid transparent;
-    position: relative;
-    bottom: 40px;
+    position: absolute;
+    top: 41px;
     left: 4px;
 }
 .sq_text {
