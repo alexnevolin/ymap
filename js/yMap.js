@@ -19,7 +19,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 		var markNum = 0;
 
 		function putZCMarks(map, zcJSON) {
-			var zcTemplate = '<div class="zc_mark"><canvas id="zc1" class="zc_canvas" width="80" height="80"></canvas><div class="zc_mark_hend"></div><span class="zc_counter">2</span><div class="zc_trigger"></div></div>';
+			var zcTemplate = '<div class="zc_mark"><div class="zc_mark_before"></div><div class="zc_mark_after"></div><canvas id="zc1" class="zc_canvas" width="80" height="80"></canvas><div class="zc_mark_hend"></div><span class="zc_counter">2</span><div class="zc_trigger"></div></div>';
 			var chartBuild = function() {
 				zcLayout.superclass.build.call(this);
 				var chart = new MarkChart("zc1");
@@ -44,7 +44,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 			}
 
 			var homemarkTemplate = '<div class="placemark_layout_container">' +
-				 		'<div class="home_layout">' +
+				 		'<div class="home_layout"><div class="home_layout_before"></div>' +
 				 			'<span style="position: relative; top: 16px;">4</span>' +
 				 			'<canvas id="'+'home1'+'" width="90" height="90" style="position: relative; bottom: 39px; right: 20px;"></canvas>' +
 						'</div></div>';
@@ -97,7 +97,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 				chart.draw();
 			}
 
-			var squareLayout = ymaps.templateLayoutFactory.createClass('<div class="sq_mark"><span class="sq_text">4</span><canvas id="'+'obj1'+'" width="88" height="88" class="sq_canvas"></canvas></div>', {
+			var squareLayout = ymaps.templateLayoutFactory.createClass('<div class="sq_mark"><div class="sq_mark_after"></div><span class="sq_text">4</span><canvas id="'+'obj1'+'" width="88" height="88" class="sq_canvas"></canvas></div>', {
 				build: chartBuild
 			});
 

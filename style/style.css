@@ -101,7 +101,7 @@
     background: #fff;
     position: relative;
 }
-.sq_mark:after {
+.sq_mark_after {
     content:"";
     width: 0;
     height: 0;
@@ -140,7 +140,7 @@
     background: #354151;
     border-radius: 100%;
     margin-top: 13px;
-    colour: #55cf56;
+    color: #55cf56;
     margin-left: 13px;
 }
 /* landmark end*/
@@ -157,7 +157,7 @@
     color: #000;
     border-radius: 50%;
 }
-.home_layout:before {
+.home_layout_before {
     top: 94%;
     left: 14.5%;
     border: 18px solid transparent;
@@ -175,17 +175,17 @@
     height: 50px;
     position: relative;
 }
-.zc_mark:before, .zc_mark:after {
+.zc_mark_before, .zc_mark_after {
     border: 25px solid transparent;
     content: "";
     position: absolute;
     z-index: 10;
 }
-.zc_mark:before {
+.zc_mark_before {
     right:100%;
     border-right: 20px solid #382FFF;
 }
-.zc_mark:after {
+.zc_mark_after {
     left:100%;
     border-left: 20px solid #382FFF;
 }
