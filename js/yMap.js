@@ -29,7 +29,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 				chart.draw();
 			}
 			var zcLayout = ymaps.templateLayoutFactory.createClass(zcTemplate, {build: chartBuild});
-			var zcmark = new ymaps.Placemark([55.65, 37.6], {hintContent: 'Жилой комплекс'}, {iconLayout: zcLayout,});
+			var zcmark = new ymaps.Placemark([55.65, 37.6], {hintContent: 'Жилой комплекс'}, {iconLayout: zcLayout});
 			map.geoObjects.add(zcmark);
 		};
 
@@ -55,13 +55,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 		        [55.65, 37.77], {
 		            hintContent: 'Ориентир'
 		        }, {
-		            iconLayout: homemarkLayout,
-		            iconShape: {
-		                type: 'Rectangle',
-		                coordinates: [
-		                    [-25, -25], [25, 25]
-		                ]
-		            }
+		            iconLayout: homemarkLayout
 		        }
 		    );
 			map.geoObjects.add(homemark);
@@ -74,13 +68,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 		        [55.7, 37.85], {
 		            hintContent: 'Ориентир'
 		        }, {
-		            iconLayout: landmarkLayout,
-		            iconShape: {
-		                type: 'Rectangle',
-		                coordinates: [
-		                    [-25, -25], [25, 25]
-		                ]
-		            }
+		            iconLayout: landmarkLayout
 		        }
 		    );
 			map.geoObjects.add(landmark);
@@ -105,13 +93,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 		        [55.8, 37.8], {
 		            hintContent: 'Метка'
 		        }, {
-		            iconLayout: squareLayout,
-		            iconShape: {
-		                type: 'Rectangle',
-		                coordinates: [
-		                    [-25, -25], [25, 25]
-		                ]
-		            }
+		            iconLayout: squareLayout
 		        }
 		    );
 
@@ -165,13 +147,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 			            chartCount: counter,
 						colour: colour
 			        }, {
-			            iconLayout: polygonLayout,
-			            iconShape: {
-			                type: 'Polygon',
-			                coordinates: [
-			                    [[-28,-76],[28,-76],[28,-20],[12,-20],[0,-4],[-12,-20],[-28,-20]]
-			                ]
-			            }
+			            iconLayout: polygonLayout
 			        }
 			    );
 
