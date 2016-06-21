@@ -23,12 +23,10 @@
     border-radius: 50%;
 }
 
-.polygon_layout:before {
-    top: 100%;
-    left: 28%;
+.arrow {
+    top: -21px;
+    left: -9px;
     border: 10px solid transparent;
-    border-top: 26px solid #ff6600;
-    content: "";
     height: 0;
     width: 0;
     position: absolute;
@@ -105,8 +103,8 @@
 }
 .sq_mark:after {
     content:"";
-    width: 0px;
-    height: 0px;
+    width: 0;
+    height: 0;
     border-top: 30px solid #3AA0EF;
     border-bottom: 30px solid transparent;
     border-right: 10px solid transparent;
@@ -132,7 +130,7 @@
     width: 50px;
     height: 50px;
     background: transparent;
-    border-radius: 100% 100% 0% 100%;
+    border-radius: 100% 100% 0 100%;
     transform: rotateZ(45deg);
     border: 5px solid #354151;
 }
@@ -142,6 +140,7 @@
     background: #354151;
     border-radius: 100%;
     margin-top: 13px;
+    colour: #55cf56;
     margin-left: 13px;
 }
 /* landmark end*/

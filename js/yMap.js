@@ -6,11 +6,8 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
     	$scope.idList = [];
     	$scope.counterList = [];
     	$scope.placemarkList = [];
-		$scope.featuresList = [];
-		$scope.colour = "";
-		$scope.chart = "";
-		$scope.number = "";
-		$scope.specEvent = false;
+		$scope.featuresList = ["Класс дома", "Количество Аналогов/Объявлений в доме", "Доли Аналогов/Объявлений в доме по комнатности (1, 2, 3 , 4+)", "В доме выданы кредиты: да/нет (информация о выданных кредитах в доме)"];
+		$scope.chosenFeatures = [];
 
 
     	$scope.update = null;
@@ -121,41 +118,39 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 			map.geoObjects.add(polygonPlacemark);
 		}
 
-        function putMarks(map, marksJSON) {
-        	console.log('Расставить метки');
+        function putMarks(map) {
+			var marksCount = $scope.marksJSON.houses;
 
-        	for (var i = 0; i < marksJSON.houses.length; i++) {
-        		var id = marksJSON.houses[i].mark_id;
-        		var counter = marksJSON.houses[i].mark_counter;
-        		var coords = marksJSON.houses[i].mark_coords;
-        		$scope.idList[i] = marksJSON.houses[i].mark_id;
+        	for (var i = 0; i < marksCount.length; i++) {
 
-				var feature = marksJSON.houses[i];
+				bindFeatures (marksCount[i]);
+				var counter = $scope.chosenFeatures[1];
+				var colour = $scope.chosenFeatures[0];
+				var specEvent = $scope.chosenFeatures[3];
+				var id = marksCount[i].mark_id;
+				var coords = marksCount[i].mark_coords;
 
-
-
-
-					$scope.counterList[i] = marksJSON.houses[i].mark_counter;
+				$scope.idList[i] = marksCount[i].mark_id;
+				$scope.counterList[i] = $scope.chosenFeatures[2];
 
 				var markTemplate = '<div class="placemark_layout_container">' +
-				 		'<div class="polygon_layout">' +
+				 		'<div class="polygon_layout" style="border-color: {{properties.colour}};">' +
 				 			'<span style="position: relative; top: 13.5px;" ng-click="alert("123")">{{ properties.chartCount }}</span>' +
 				 			'<canvas id="'+id+'" width="90" height="90" style="position: relative; bottom: 39px; right: 20.5px;"></canvas>' +
-						'</div></div>';
+						'</div><div class="arrow" style="border-top: 26px solid {{properties.colour}};"></div></div></div>';
 
 				var chartBuild = function() {
 					polygonLayout.superclass.build.call(this);
 
 					var chart = new MarkChart($scope.idList[markNum]);
 					 chart.chartType = "ring";
-
 					 chart.data = [+$scope.counterList[markNum],8-$scope.counterList[markNum]];
 					 chart.colors = ['#0FFF2B', '#00ffff'];
 					 chart.draw();
 					if (markNum < $scope.marksJSON.houses.length+1)
 						markNum++;
 					else markNum = 0;
-				}
+				};
 
 				var polygonLayout = ymaps.templateLayoutFactory.createClass(markTemplate, {
 					build: chartBuild
@@ -167,7 +162,8 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 			        [coords.x, coords.y], {
 			            // balloonContent: balloonLayout,
 			            name: 'my name',
-			            chartCount: $scope.number
+			            chartCount: counter,
+						colour: colour
 			        }, {
 			            iconLayout: polygonLayout,
 			            iconShape: {
@@ -191,29 +187,27 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
         }
 
-		function bindFeatures ()  {
-			var data =  $scope.marksJSON;
+		function bindFeatures (dataMark)  {
 			var features =  $scope.featuresList;
 
-			for (var keyMark in data) {
+				for(var key in dataMark) {
 
-				for(var key in data[keyMark]) {
 					if(key == features[0]){
-						$scope.colour = features[key];
+						$scope.chosenFeatures[0] = dataMark[key];
 					}
 
 					if(key == features[1]){
-						$scope.number = features[key];
+						$scope.chosenFeatures[1] = dataMark[key];
 					}
 
 					if(key == features[2]){
-						$scope.chart = features[key];
+						$scope.chosenFeatures[2] = dataMark[key];
 					}
+
 					if(key == features[3]){
-						$scope.specEvent = features[key];
+						$scope.chosenFeatures[3] = dataMark[key];
 					}
 				}
-			}
 		}
 
      	function init() {
@@ -231,7 +225,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
 			$scope.map = map;
 
-			putMarks($scope.map,$scope.marksJSON);
+			putMarks($scope.map,$scope.chosenFeatures);
 			putObjects($scope.map,null);
 			putLandmarks($scope.map,null);
 			putHomemarks($scope.map,null);
@@ -334,7 +328,8 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 					defaultFeatures();
 
 					$('#window').on('click','#sendFeatures', function(){
-						defaultFeatures()
+						defaultFeatures();
+						putMarks();
 					});
 
 					function onClose() {
