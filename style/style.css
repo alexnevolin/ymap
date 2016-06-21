@@ -105,7 +105,6 @@
     content:"";
     width: 0;
     height: 0;
-    border-top: 30px solid #3AA0EF;
     border-bottom: 30px solid transparent;
     border-right: 10px solid transparent;
     border-left: 10px solid transparent;
@@ -161,7 +160,6 @@
     top: 94%;
     left: 14.5%;
     border: 18px solid transparent;
-    border-top: 20px solid #8F40B3;
     content: "";
     height: 0;
     width: 0;
@@ -170,7 +168,6 @@
 /* home mark end*/
 /* zhil complex mark start*/
 .zc_mark {
-    background: #3A30FF;
     width: 30px;
     height: 50px;
     position: relative;
@@ -183,17 +180,14 @@
 }
 .zc_mark_before {
     right:100%;
-    border-right: 20px solid #382FFF;
 }
 .zc_mark_after {
     left:100%;
-    border-left: 20px solid #382FFF;
 }
 .zc_mark_hend {
     width: 0;
     height: 0;
     border: 8px solid transparent;
-    border-top: 30px solid #382FFF;
     position: absolute;
     top: 100%;
     left: 22%;
