@@ -185,11 +185,8 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 				}
 		}*/
 
-		function bla (data, features, i) {
-			console.log('мы в bla');
+		function putChosenFeatures (data, features, i) {
 			for (var key in data) {
-				console.log(key);
-				console.log(features[i]);
 				if (key == features[i]) {
 					$scope.chosenFeatures[i] = data[key];
 				}
@@ -201,10 +198,8 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 			var position = 0;
 
 			for( var key in dataMark){
-            console.log(key);
-				console.log(dataMark[key]);
-				if( key != "mark_coords" && key != "mark_id") {
-					bla(dataMark[key], features, position);
+				if( key != "mark_coords" && key != "mark_id" && key != "type") {
+					putChosenFeatures(dataMark[key], features, position);
 					position ++;
 				}
 			}
