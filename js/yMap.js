@@ -181,7 +181,6 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
     			});
 
     			$scope.placemarkList[i] = polygonPlacemark;
-
 			   	map.geoObjects.add(polygonPlacemark);
 		   }
 
@@ -225,7 +224,7 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 
 			$scope.map = map;
 
-			putMarks($scope.map,$scope.chosenFeatures);
+			putMarks($scope.map);
 			putObjects($scope.map,null);
 			putLandmarks($scope.map,null);
 			putHomemarks($scope.map,null);
@@ -322,14 +321,16 @@ var yMapApp = angular.module("YMap", [ "kendo.directives" ])
 							}
 						}).get();
 						$scope.featuresList = vals;
-						console.log($scope.featuresList);
+
 					}
 
 					defaultFeatures();
 
 					$('#window').on('click','#sendFeatures', function(){
 						defaultFeatures();
-						putMarks();
+						map.geoObjects.removeAll();
+						markNum = 0;
+						putMarks(map);
 					});
 
 					function onClose() {
