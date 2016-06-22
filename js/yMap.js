@@ -37,7 +37,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                         '<div class="zc_mark_after" style="border-left: 20px solid {{properties.colour}};"></div>' +
                         '<canvas id="' + id + '" class="zc_canvas" width="80" height="80"></canvas>' +
                         '<div class="zc_mark_hend" style="border-top: 30px solid {{properties.colour}};"></div>' +
-                        '<span class="zc_counter">{{ properties.chartCount }}</span><div data-id="'+id+'" class="zc_trigger"></div></div>';
+                        '<span class="zc_counter">{{ properties.chartCount }}</span><div id="id_'+id+'" data-id="'+id+'" class="zc_trigger"></div></div>';
                     break;
                 case 'home':
                     markTemplate = '<div class="placemark_layout_container">' +
@@ -68,14 +68,15 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
             var chartBuild = function() {
                 markLayout.superclass.build.call(this);
 
+                var markId = "#id_" + $scope.idList[markNum];
+                var currentMark = $(markId);
                 var chart = new MarkChart($scope.idList[markNum]);
                 chart.chartType = "ring";
                 chart.data = [+$scope.counterList[markNum], 8 - $scope.counterList[markNum]];
                 chart.colors = ['#0FFF2B', '#00ffff'];
                 chart.draw();
-                specEvent = '0';
 
-                if($('.zc_trigger').data('id') == $scope.idList[markNum]){
+                if(currentMark.data('id') == $scope.idList[markNum] ){
                     var specEvent;
 
                     for(var key in specEvents){
@@ -83,7 +84,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                             specEvent = specEvents[key];
                         }
                     }
-                    specEvent == "1" ? $('.zc_trigger').css('visibility','visible') :  $('.zc_trigger').css('visibility','hidden');
+                    specEvent == "1" ? currentMark.css('visibility','visible') :  currentMark.css('visibility','hidden');
                 }
 
                 if (markNum < $scope.marksJSON.houses.length + 1)
@@ -169,51 +170,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
             },
 
             _onGetChildElement: function(parentDomContainer) {
-                this._$content = $('<button class="k-button" id="features">Характеристики</button>' +
-                    '<div class="features-window" id="window">' +
-                    '<div class="list-section k-content">' +
-                    '<ul class="fieldlist">' +
-                    '<li><input type="radio" name="colour-mark" id="colourm1" value="Класс дома" class="k-radio"  checked="checked">' +
-                    '<label class="k-radio-label" for="colourm1">Класс дома</label></li>' +
-                    '<li><input type="radio" name="colour-mark" id="colourm2" value="Материал стен дома" class="k-radio">' +
-                    '<label class="k-radio-label" for="colourm2">Материал стен дома</label></li>' +
-                    '<li><input type="radio" name="colour-mark" id="colourm3" value="Максимальная этажность  дома" class="k-radio">' +
-                    '<label class="k-radio-label" for="colourm3">Максимальная этажность  дома</label></li>' +
-                    '<li><input type="radio" name="colour-mark" id="colourm4" value="Год постройки дома" class="k-radio">' +
-                    '<label class="k-radio-label" for="colourm4">Год постройки дома</label></li>' +
-                    '<li><input type="radio" name="colour-mark" id="colourm5" value="Когорта дома Объекта" class="k-radio">' +
-                    '<label class="k-radio-label" for="colourm5">Когорта дома Объекта </label></li>' +
-                    '</ul>' +
-                    '<ul class="fieldlist">' +
-                    '<li><input type="radio" name="number-mark" id="numberm1" value="Количество Аналогов/Объявлений в доме" class="k-radio" checked="checked">' +
-                    '<label class="k-radio-label" for="numberm1">Количество Аналогов/Объявлений в доме</label></li>' +
-                    '<li><input type="radio" name="number-mark" id="numberm2" value="Максимальная этажность  дома" class="k-radio">' +
-                    '<label class="k-radio-label" for="numberm2">Максимальная этажность  дома</label></li>' +
-                    '<li><input type="radio" name="number-mark" id="numberm3" value="Год постройки дома" class="k-radio">' +
-                    '<label class="k-radio-label" for="numberm3">Год постройки дома</label></li>' +
-                    '<li><input type="radio" name="number-mark" id="numberm4" value="Количество описанных квартир в доме по Росреестру" class="k-radio">' +
-                    '<label class="k-radio-label" for="numberm4">Количество описанных квартир в доме по Росреестру</label></li>' +
-                    '<li><input type="radio" name="number-mark" id="numberm5" value="Средняя удельная цена Аналогов/Объявлений (тыс.руб.)" class="k-radio">' +
-                    '<label class="k-radio-label" for="numberm5">Средняя удельная цена Аналогов/Объявлений (тыс.руб.)</label></li>' +
-                    '<li><input type="radio" name="number-mark" id="numberm6" value="Удельная Кадастровая стоимость (тыс.руб.)" class="k-radio">' +
-                    '<label class="k-radio-label" for="numberm6">Удельная Кадастровая стоимость (тыс.руб.)</label></li>' +
-                    '</ul>' +
-                    '<ul class="fieldlist">' +
-                    '<li><input type="radio" name="diagram-mark" id="diagramm1" value="Доли Аналогов/Объявлений в доме по комнатности (1, 2, 3 , 4+)" class="k-radio" checked="checked">' +
-                    '<label class="k-radio-label" for="diagramm1">Доли Аналогов/Объявлений в доме по комнатности (1, 2, 3 , 4+)</label></li>' +
-                    '<li><input type="radio" name="diagram-mark" id="diagramm2" value="Доли Аналогов/Объявлений в доме по классу (дихотомия: доминирующий класс и остальные)" class="k-radio">' +
-                    '<label class="k-radio-label" for="diagramm2">Доли Аналогов/Объявлений в доме по классу (дихотомия: доминирующий класс и остальные)</label></li>' +
-                    '</ul>' +
-                    '<ul class="fieldlist">' +
-                    '<li><input type="radio" name="special-mark" id="specialm1" value="В доме выданы кредиты: да/нет (информация о выданных кредитах в доме)" class="k-radio" checked="checked">' +
-                    '<label class="k-radio-label" for="specialm1">В доме выданы кредиты: да/нет (информация о выданных кредитах в доме)</label></li>' +
-                    '<li><input type="radio" name="special-mark" id="specialm2" value="Описание дома рассогласовано: да/нет (характеристики рассогласованности)" class="k-radio">' +
-                    '<label class="k-radio-label" for="specialm2">Описание дома рассогласовано: да/нет (характеристики рассогласованности)</label></li>' +
-                    '</ul>' +
-                    '</div>' +
-                    '<button class="k-button controlFeatures" id="refreshFeatures">Отменить</button>' +
-                    '<button class="k-button controlFeatures" id="sendFeatures">Показать</button>' +
-                    '</div>').appendTo(parentDomContainer);
+                this._$content = templateWindowFeatures.appendTo(parentDomContainer);
                 this._mapEventGroup = this.getMap().events.group();
 
                 var myWindow = $("#window"),
