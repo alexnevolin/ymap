@@ -48,7 +48,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                         '</div></div>';
                     break;
                 case 'landmark':
-                    markTemplate = '<div class="landmark"><div class="landmark_center"></div></div>';
+                    markTemplate = '<div class="landmark"><div class="landmark_center"></div></div><div><canvas style="display:none" id="' + id + '""></canvas>';
                     break;
                 case 'object':
                     markTemplate = '<div class="sq_mark" style="border-color: {{properties.colour}};">' +
