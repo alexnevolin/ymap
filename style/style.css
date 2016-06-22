@@ -152,17 +152,20 @@
     position: relative;
     background: #ffffff;
     border: 4px solid #8F40B3;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     left: -28px;
     top: -76px;
     color: #000;
     border-radius: 50%;
 }
+.home_text {
+    font-size: 10px;
+}
 .home_layout_before {
-    top: 94%;
-    left: 14.5%;
-    border: 18px solid transparent;
+    top: 92%;
+    left: 4%;
+    border: 14px solid transparent;
     content: "";
     height: 0;
     width: 0;
@@ -171,12 +174,13 @@
 /* home mark end*/
 /* zhil complex mark start*/
 .zc_mark {
-    width: 30px;
-    height: 50px;
+    width: 18px;
+    height: 30px;
     position: relative;
+    
 }
 .zc_mark_before, .zc_mark_after {
-    border: 25px solid transparent;
+    border: 15px solid transparent;
     content: "";
     position: absolute;
     z-index: 10;
@@ -190,28 +194,29 @@
 .zc_mark_hend {
     width: 0;
     height: 0;
-    border: 8px solid transparent;
+    border: 6px solid transparent;
     position: absolute;
     top: 100%;
-    left: 22%;
+    left: 18%;
 }
-.zc_counter {
+.zc_text {
+    font-size: 10px;
     position: absolute;
     display: inline-block;
     border-radius: 100%;
-    width: 30px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     background: #FFF;
-    top: 6px;
+    top: 1px;
     text-align: center;
-    margin-top: 3px;
-    padding-top: 6px;
+    margin-top: 7px;
+    /*padding-top: 6px;*/
     font-weight: bold;
 }
 .zc_canvas {
     position: absolute; 
-    top: -15px; 
-    right: -25px; 
+    top: -18px; 
+    right: -24px; 
     z-index: 20;
 }
 .zc_trigger {

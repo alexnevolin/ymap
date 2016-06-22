@@ -35,16 +35,16 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                     markTemplate = '<div class="zc_mark" style="background: {{properties.colour}};">' +
                         '<div class="zc_mark_before" style="border-right: 20px solid {{properties.colour}};"></div>' +
                         '<div class="zc_mark_after" style="border-left: 20px solid {{properties.colour}};"></div>' +
-                        '<canvas id="' + id + '" class="zc_canvas" width="80" height="80"></canvas>' +
-                        '<div class="zc_mark_hend" style="border-top: 30px solid {{properties.colour}};"></div>' +
-                        '<span class="zc_counter">{{ properties.chartCount }}</span><div id="id_'+id+'" data-id="'+id+'" class="zc_trigger"></div></div>';
+                        '<canvas id="' + id + '" class="zc_canvas" width="65" height="65"></canvas>' +
+                        '<div class="zc_mark_hend" style="border-top: 18px solid {{properties.colour}};"></div>' +
+                        '<span class="zc_text">{{ properties.chartCount }}</span><div id="id_'+id+'" data-id="'+id+'" class="zc_trigger"></div></div>';
                     break;
                 case 'home':
                     markTemplate = '<div class="placemark_layout_container">' +
                         '<div class="home_layout" style="border-color: {{properties.colour}};">' +
                         '<div class="home_layout_before" style="border-top: 20px solid {{properties.colour}};"></div>' +
-                        '<span style="position: relative; top: 16px;">{{ properties.chartCount }}</span>' +
-                        '<canvas id="' + id + '" width="90" height="90" style="position: relative; bottom: 39px; right: 20px;"></canvas>' +
+                        '<span class="home_text" style="position: relative; top: 4px;">{{ properties.chartCount }}</span>' +
+                        '<canvas id="' + id + '" width="70" height="70" style="position: relative; bottom: 39px; right: 20px;"></canvas>' +
                         '</div></div>';
                     break;
                 case 'landmark':
@@ -60,7 +60,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                     markTemplate = '<div class="placemark_layout_container">' +
                         '<div class="polygon_layout" style="border-color: {{properties.colour}};">' +
                         '<span class="analog_text" style="position: relative; top: 4px;">{{ properties.chartCount }}</span>' +
-                        '<canvas id="' + id + '" width="70" height="70" style="position: relative; bottom: 39px; right: 20.5px;"></canvas>' +
+                        '<canvas id="' + id + '" width="70" height="70" style="position: relative; bottom: 39px; right: 20px;"></canvas>' +
                         '</div><div class="arrow" style="border-top: 20px solid {{properties.colour}};"></div></div></div>';
                     break;
             }
