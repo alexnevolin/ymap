@@ -15,15 +15,16 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
     function putMarks(map) {
         var marksCount = $scope.marksJSON.houses;
         var markNum = 0;
+        var specEvents = {};
 
         for (var i = 0; i < marksCount.length; i++) {
 
             bindFeatures(marksCount[i]);
             var counter = $scope.chosenFeatures[1];
             var colour = $scope.chosenFeatures[0];
-            var specEvent = $scope.chosenFeatures[3];
             var id = marksCount[i].mark_id;
             var coords = marksCount[i].mark_coords;
+            specEvents[id] = $scope.chosenFeatures[3];
 
             $scope.idList[i] = id;
             $scope.counterList[i] = $scope.chosenFeatures[2];
@@ -36,7 +37,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                         '<div class="zc_mark_after" style="border-left: 20px solid {{properties.colour}};"></div>' +
                         '<canvas id="' + id + '" class="zc_canvas" width="80" height="80"></canvas>' +
                         '<div class="zc_mark_hend" style="border-top: 30px solid {{properties.colour}};"></div>' +
-                        '<span class="zc_counter">{{ properties.chartCount }}</span><div class="zc_trigger"></div></div>';
+                        '<span class="zc_counter">{{ properties.chartCount }}</span><div data-id="'+id+'" class="zc_trigger"></div></div>';
                     break;
                 case 'home':
                     markTemplate = '<div class="placemark_layout_container">' +
@@ -72,6 +73,18 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                 chart.data = [+$scope.counterList[markNum], 8 - $scope.counterList[markNum]];
                 chart.colors = ['#0FFF2B', '#00ffff'];
                 chart.draw();
+                specEvent = '0';
+
+                if($('.zc_trigger').data('id') == $scope.idList[markNum]){
+                    var specEvent;
+
+                    for(var key in specEvents){
+                        if(key == $scope.idList[markNum]){
+                            specEvent = specEvents[key];
+                        }
+                    }
+                    specEvent == "1" ? $('.zc_trigger').css('visibility','visible') :  $('.zc_trigger').css('visibility','hidden');
+                }
 
                 if (markNum < $scope.marksJSON.houses.length + 1)
                     markNum++;
