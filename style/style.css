@@ -96,10 +96,10 @@
 
 /* square mark */
 .sq_mark {
-    width: 56px;
-    height: 56px;
+    width: 32px;
+    height: 32px;
     border-radius: 4px;
-    border: 14px solid #3AA0EF;
+    border: 10px solid #3AA0EF;
     box-sizing: border-box;
     background: #fff;
     position: relative;
@@ -108,23 +108,30 @@
     content:"";
     width: 0;
     height: 0;
-    border-bottom: 30px solid transparent;
-    border-right: 10px solid transparent;
-    border-left: 10px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
     position: absolute;
-    top: 41px;
-    left: 4px;
+    top: 18px;
+    right: 0px;
 }
 .sq_text {
-    position: relative; 
-    left: 9px; 
-    top: 5px; 
+    position: absolute; 
+    right: -4px; 
+    bottom: -4px; 
     font-weight: bold;
+    font-size: 10px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 100%;
+    line-height: 20px;
+    text-align: center;
 }
 .sq_canvas {
     position: relative; 
-    bottom: 48px; 
-    right: 30px;
+    bottom: 28px; 
+    right: 28px;
 }
 /* square mark end*/
 /* landmark */

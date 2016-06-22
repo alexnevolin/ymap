@@ -52,9 +52,9 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                     break;
                 case 'object':
                     markTemplate = '<div class="sq_mark" style="border-color: {{properties.colour}};">' +
-                        '<div class="sq_mark_after" style="border-top: 30px solid {{properties.colour}};"></div>' +
+                        '<div class="sq_mark_after" style="border-top: 22px solid {{properties.colour}};"></div>' +
                         '<span class="sq_text">{{ properties.chartCount }}</span>' +
-                        '<canvas id="' + id + '" width="88" height="88" class="sq_canvas"></canvas></div>';
+                        '<canvas id="' + id + '" width="68" height="68" class="sq_canvas"></canvas></div>';
                     break;
                 case 'analog':
                     markTemplate = '<div class="placemark_layout_container">' +
