@@ -59,9 +59,9 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                 case 'analog':
                     markTemplate = '<div class="placemark_layout_container">' +
                         '<div class="polygon_layout" style="border-color: {{properties.colour}};">' +
-                        '<span style="position: relative; top: 13.5px;" ng-click="alert("123")">{{ properties.chartCount }}</span>' +
-                        '<canvas id="' + id + '" width="90" height="90" style="position: relative; bottom: 39px; right: 20.5px;"></canvas>' +
-                        '</div><div class="arrow" style="border-top: 26px solid {{properties.colour}};"></div></div></div>';
+                        '<span class="analog_text" style="position: relative; top: 4px;">{{ properties.chartCount }}</span>' +
+                        '<canvas id="' + id + '" width="70" height="70" style="position: relative; bottom: 39px; right: 20.5px;"></canvas>' +
+                        '</div><div class="arrow" style="border-top: 20px solid {{properties.colour}};"></div></div></div>';
                     break;
             }
 

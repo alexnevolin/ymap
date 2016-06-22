@@ -15,18 +15,20 @@
     position: relative;
     background: #ffffff;
     border: 4px solid #ff6600;
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     left: -28px;
     top: -76px;
     color: #000;
     border-radius: 50%;
 }
-
+.analog_text {
+    font-size: 10px;
+}
 .arrow {
-    top: -21px;
-    left: -9px;
-    border: 10px solid transparent;
+    top: -40px;
+    left: -15px;
+    border: 5px solid transparent;
     height: 0;
     width: 0;
     position: absolute;
@@ -127,21 +129,21 @@
 /* square mark end*/
 /* landmark */
 .landmark {
-    width: 50px;
-    height: 50px;
+    width: 25px;
+    height: 25px;
     background: transparent;
     border-radius: 100% 100% 0 100%;
     transform: rotateZ(45deg);
     border: 5px solid #354151;
 }
 .landmark_center {
-    width: 25px;
-    height: 25px;
+    width: 15px;
+    height: 15px;
     background: #354151;
     border-radius: 100%;
-    margin-top: 13px;
+    margin-top: 5px;
     color: #55cf56;
-    margin-left: 13px;
+    margin-left: 5px;
 }
 /* landmark end*/
 
