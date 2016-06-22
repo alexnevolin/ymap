@@ -29,42 +29,6 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
             $scope.idList[i] = id;
             $scope.counterList[i] = $scope.chosenFeatures[2];
 
-            var markTemplate = '';
-            switch (marksCount[i].type) {
-                case 'zc':
-                    markTemplate = '<div class="zc_mark" style="background: {{properties.colour}};">' +
-                        '<div class="zc_mark_before" style="border-right: 10px solid {{properties.colour}};"></div>' +
-                        '<div class="zc_mark_after" style="border-left: 10px solid {{properties.colour}};"></div>' +
-                        '<canvas id="' + id + '" class="zc_canvas" width="65" height="65"></canvas>' +
-                        '<div class="zc_mark_hend" style="border-top: 18px solid {{properties.colour}};"></div>' +
-                        '<span class="zc_text text">{{ properties.chartCount }}</span><div id="id_'+id+'" data-id="'+id+'" class="zc_trigger"></div></div>';
-                    break;
-                case 'home':
-                    markTemplate = '<div class="placemark_layout_container">' +
-                        '<div class="home_layout" style="border-color: {{properties.colour}};">' +
-                        '<div class="home_layout_before" style="border-top: 20px solid {{properties.colour}};"></div>' +
-                        '<span class="home_text text" style="position: relative; top: 4px;">{{ properties.chartCount }}</span>' +
-                        '<canvas id="' + id + '" width="70" height="70" style="position: relative; bottom: 39px; right: 20px;"></canvas>' +
-                        '</div></div>';
-                    break;
-                case 'landmark':
-                    markTemplate = '<div class="landmark"><div class="landmark_center"></div></div><div><canvas style="display:none" id="' + id + '""></canvas>';
-                    break;
-                case 'object':
-                    markTemplate = '<div class="sq_mark" style="border-color: {{properties.colour}};">' +
-                        '<div class="sq_mark_after" style="border-top: 20px solid {{properties.colour}};"></div>' +
-                        '<span class="sq_text text">{{ properties.chartCount }}</span>' +
-                        '<canvas id="' + id + '" width="65" height="65" class="sq_canvas"></canvas></div>';
-                    break;
-                case 'analog':
-                    markTemplate = '<div class="placemark_layout_container">' +
-                        '<div class="polygon_layout" style="border-color: {{properties.colour}};">' +
-                        '<span class="analog_text text" style="position: relative; top: 4px;">{{ properties.chartCount }}</span>' +
-                        '<canvas id="' + id + '" width="70" height="70" style="position: relative; bottom: 39px; right: 20px;"></canvas>' +
-                        '</div><div class="arrow" style="border-top: 20px solid {{properties.colour}};"></div></div></div>';
-                    break;
-            }
-
             var chartBuild = function() {
                 markLayout.superclass.build.call(this);
 
@@ -92,7 +56,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                 else markNum = 0;
             };
 
-            var markLayout = ymaps.templateLayoutFactory.createClass(markTemplate, {
+            var markLayout = ymaps.templateLayoutFactory.createClass(getMarkTemplate(marksCount[i].type,id), {
                 build: chartBuild
             });
 
