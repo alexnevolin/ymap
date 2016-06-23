@@ -270,3 +270,18 @@
     margin-left: 4px;
 }
 /*lndmark home ak and aknew end*/
+
+.landmark_zc_ak_text {
+    width:25px;
+    height: 25px;
+    position: absolute;
+    display: inline-block;
+    border-radius: 100%;
+    background: #FFF;
+    top: 5px;
+    left: 0;
+    line-height: 25px;
+    z-index: 100;
+    font-weight: bold;
+}
+

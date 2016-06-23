@@ -96,7 +96,29 @@ var getMarkTemplate = function(type,id) {
             break;
         case 'landmark_home_aknew':
             tmpl = '<div class="landmark_home"><div class="landmark_home_aknew_icon fa fa-building"></div></div><canvas style="display:none" id="' + id + '""></canvas>';
-            break;    
+            break; 
+        case 'landmark_zc_ak':
+            tmpl = '<div class="placemark_layout_container">'+
+                '<div class="zc_layout" style="background: #000;">' +
+                 '<div class="zc_layout_left" style="border-right: 10px solid #000;"></div>' +
+                 '<div class="zc_layout_right" style="border-left: 10px solid #000;"></div>' +
+                 '<canvas id="' + id + '" class="canvas" width="70" height="70"></canvas>' +
+                 '<div class="pin" style="border-top: 20px solid #000;"></div>' +
+                 '<span class="landmark_zc_ak_text" style="width: 25px; height: 25px;""><i class="landmark_zc_ak_icon fa fa-home"></i></span>'+
+                 '<div id="id_'+id+'" data-id="'+id+'" class="zc_trigger" style="display:none;"></div>'+
+                '</div></div>';
+            break;      
+        case 'landmark_zc_aknew':
+            tmpl = '<div class="placemark_layout_container">'+
+                '<div class="zc_layout" style="background: #000;">' +
+                 '<div class="zc_layout_left" style="border-right: 10px solid #000;"></div>' +
+                 '<div class="zc_layout_right" style="border-left: 10px solid #000;"></div>' +
+                 '<canvas id="' + id + '" class="canvas" width="70" height="70"></canvas>' +
+                 '<div class="pin" style="border-top: 20px solid #000;"></div>' +
+                 '<span class="landmark_zc_ak_text" style="width: 25px; height: 25px;""><i class="landmark_zc_aknew_icon fa fa-building"></i></span>'+
+                 '<div id="id_'+id+'" data-id="'+id+'" class="zc_trigger" style="display:none;"></div>'+
+                '</div></div>';
+            break;      
     }
     return tmpl;
 }
