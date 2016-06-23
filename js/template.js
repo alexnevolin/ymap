@@ -49,6 +49,7 @@ var templateWindowFeatures = $('<button class="k-button" id="features">Хара�
     '</div>');
 
 var getMarkTemplate = function(type,id) {
+    console.log(type);
     var tmpl = '';
     switch (type) {
         case 'zc':
@@ -68,7 +69,7 @@ var getMarkTemplate = function(type,id) {
                 '</div></div>';
             break;
         case 'landmark':
-            tmpl = '<div class="landmark"><div class="landmark_center"></div></div><div><canvas style="display:none" id="' + id + '""></canvas>';
+            tmpl = '<div class="landmark"><div class="landmark_center"></div></div><canvas style="display:none" id="' + id + '""></canvas>';
             break;
         case 'object':
             tmpl = '<div class="sq_mark" style="border-color: {{properties.colour}};">' +
@@ -83,6 +84,12 @@ var getMarkTemplate = function(type,id) {
                 '<canvas id="' + id + '" width="70" height="70" style="position: relative; bottom: 39px; right: 20px;"></canvas>' +
                 '</div><div class="arrow" style="border-top: 20px solid {{properties.colour}};"></div></div></div>';
             break;
+        case 'landmark_home_ak':
+            tmpl = '<div class="landmark_home"><div class="landmark_home_icon fa fa-home"></div></div><canvas style="display:none" id="' + id + '""></canvas>';
+            break;
+        case 'landmark_home_aknew':
+            tmpl = '<div class="landmark_home"><div class="landmark_home_aknew_icon fa fa-building"></div></div><canvas style="display:none" id="' + id + '""></canvas>';
+            break;    
     }
     return tmpl;
 }

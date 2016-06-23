@@ -249,3 +249,33 @@
     text-align:center;
     line-height: 14px;
 }
+
+/*lndmark home ak and aknew start*/
+.landmark_home {
+    position: relative;
+    top: -42px;
+    left: 0px;
+    width: 22px;
+    height: 22px;
+    background: transparent;
+    border-radius: 100% 100% 0 100%;
+    transform: rotateZ(45deg);
+    border: 3px solid #354151;
+}
+.landmark_home_icon {
+    width: 16px;
+    height: 16px;
+    transform: rotateZ(315deg);
+    color: #354151;
+    margin-top: 2px;
+    margin-left: 2px;
+}
+.landmark_home_aknew_icon {
+    width: 16px;
+    height: 16px;
+    transform: rotateZ(315deg);
+    color: #354151;
+    margin-top: 2px;
+    margin-left: 4px;
+}
+/*lndmark home ak and aknew end*/
