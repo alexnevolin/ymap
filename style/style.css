@@ -271,7 +271,7 @@
     margin-left: 6px;
 }
 /*lndmark home ak and aknew end*/
-
+/*lndmark zc start*/
 .landmark_zc_ak_text {
     width:25px;
     height: 25px;
@@ -285,4 +285,48 @@
     z-index: 100;
     font-weight: bold;
 }
+.landmark_zc_layout{
+    width: 20px;
+    height: 28px;
+    position: absolute;
+    right: 23%;
+}
+.landmark_zc_ak_text {
+    width:24px;
+    height: 24px;
+    position: absolute;
+    display: inline-block;
+    border-radius: 100%;
+    background: #FFF;
+    top: 2px;
+    left: -2px;
+    line-height: 25px;
+    z-index: 100;
+    font-weight: bold;
+}
+.landmark_zc_layout_left{
+    border: 14px solid transparent;
+    content: "";
+    position: absolute;
+    right: 100%;
+}
 
+.landmark_zc_layout_right{
+    border: 14px solid transparent;
+    content: "";
+    position: absolute;
+    left: 100%;
+}
+.landmark_zc_pin {
+    width: 0;
+    height: 0;
+    border: 4px solid transparent;
+    top: 100%;
+    left: 30%;
+    position: absolute;
+}
+.landmark_zc_aknew_icon {
+    position: relative;
+    left: 0.5px;
+}
+/*lndmark zc end*/
