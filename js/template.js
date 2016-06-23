@@ -7,7 +7,7 @@ var templateWindowFeatures = $('<button class="k-button" id="features">Хара�
                     '<label class="k-radio-label" for="colourm1">Класс дома</label></li>' +
                 '<li><input type="radio" name="colour-mark" id="colourm2" value="Материал стен дома" class="k-radio">' +
                     '<label class="k-radio-label" for="colourm2">Материал стен дома</label></li>' +
-                '<li><input type="radio" name="colour-mark" id="colourm3" value="Максимальная этажность  дома" class="k-radio">' +
+                '<li><input type="radio" name="colour-mark" id="colourm3" value="Максимальная этажность дома" class="k-radio">' +
                     '<label class="k-radio-label" for="colourm3">Максимальная этажность  дома</label></li>' +
                 '<li><input type="radio" name="colour-mark" id="colourm4" value="Год постройки дома" class="k-radio">' +
                     '<label class="k-radio-label" for="colourm4">Год постройки дома</label></li>' +
@@ -18,7 +18,7 @@ var templateWindowFeatures = $('<button class="k-button" id="features">Хара�
             '<ul class="fieldlist">' +
                 '<li><input type="radio" name="number-mark" id="numberm1" value="Количество Аналогов/Объявлений в доме" class="k-radio" checked="checked">' +
                     '<label class="k-radio-label" for="numberm1">Количество Аналогов/Объявлений в доме</label></li>' +
-                '<li><input type="radio" name="number-mark" id="numberm2" value="Максимальная этажность  дома" class="k-radio">' +
+                '<li><input type="radio" name="number-mark" id="numberm2" value="Максимальная этажность дома" class="k-radio">' +
                     '<label class="k-radio-label" for="numberm2">Максимальная этажность  дома</label></li>' +
                 '<li><input type="radio" name="number-mark" id="numberm3" value="Год постройки дома" class="k-radio">' +
                     '<label class="k-radio-label" for="numberm3">Год постройки дома</label></li>' +
@@ -53,36 +53,42 @@ var getMarkTemplate = function(type,id) {
     var tmpl = '';
     switch (type) {
         case 'zc':
-            tmpl = '<div class="zc_mark" style="background: {{properties.colour}};">' +
-                '<div class="zc_mark_before" style="border-right: 20px solid {{properties.colour}};"></div>' +
-                '<div class="zc_mark_after" style="border-left: 20px solid {{properties.colour}};"></div>' +
-                '<canvas id="' + id + '" class="zc_canvas" width="65" height="65"></canvas>' +
-                '<div class="zc_mark_hend" style="border-top: 18px solid {{properties.colour}};"></div>' +
-                '<span class="zc_text">{{ properties.chartCount }}</span><div id="id_'+id+'" data-id="'+id+'" class="zc_trigger"></div></div>';
+            tmpl = '<div class="placemark_layout_container">'+
+                '<div class="zc_layout" style="background: {{properties.colour}};">' +
+                 '<div class="zc_layout_left" style="border-right: 10px solid {{properties.colour}};"></div>' +
+                 '<div class="zc_layout_right" style="border-left: 10px solid {{properties.colour}};"></div>' +
+                 '<canvas id="' + id + '" class="canvas" width="70" height="70"></canvas>' +
+                 '<div class="pin" style="border-top: 20px solid {{properties.colour}};"></div>' +
+                 '<span class="text">{{ properties.chartCount }}</span>'+
+                 '<div id="id_'+id+'" data-id="'+id+'" class="zc_trigger"></div>'+
+                '</div></div>';
             break;
         case 'home':
             tmpl = '<div class="placemark_layout_container">' +
-                '<div class="home_layout" style="border-color: {{properties.colour}};" style="display:none;">' +
-                '<div class="home_layout_before" style="border-top: 20px solid {{properties.colour}};"></div>' +
-                '<span class="home_text" style="position: relative; top: 4px; display:none;">{{ properties.chartCount }}</span>' +
-                '<canvas id="' + id + '" width="70" height="70" style="position: relative; bottom: 20px; right: 20px; z-index: 20;"></canvas>' +
+                '<div class="home_layout" style="border-color: {{properties.colour}};">' +
+                 '<div class="home_layout_pin pin" style="border-top: 23px solid {{properties.colour}};"></div>' +
+                 '<span class="home_layout_text text">{{ properties.chartCount }}</span>' +
+                 '<canvas id="' + id + '" width="70" height="70" class="home_layout_canvas canvas"></canvas>' +
                 '</div></div>';
             break;
         case 'landmark':
             tmpl = '<div class="landmark"><div class="landmark_center"></div></div><canvas style="display:none" id="' + id + '""></canvas>';
             break;
         case 'object':
-            tmpl = '<div class="sq_mark" style="border-color: {{properties.colour}};">' +
-                '<div class="sq_mark_after" style="border-top: 22px solid {{properties.colour}};"></div>' +
-                '<span class="sq_text">{{ properties.chartCount }}</span>' +
-                '<canvas id="' + id + '" width="68" height="68" class="sq_canvas"></canvas></div>';
+            tmpl = '<div class="placemark_layout_container">' +
+                '<div class="sq_layout" style="background: {{properties.colour}};">' +
+                 '<div class="sq_layout_pin pin" style="border-top: 22px solid {{properties.colour}};"></div>' +
+                 '<span class="sq_layout_text text">{{ properties.chartCount }}</span>' +
+                 '<canvas id="' + id + '" width="70" height="70" class="sq_layout_canvas canvas"></canvas>' +
+                '</div></div>';
             break;
         case 'analog':
             tmpl = '<div class="placemark_layout_container">' +
-                '<div class="polygon_layout" style="border-color: {{properties.colour}};">' +
-                '<span class="analog_text" style="position: relative; top: 4px;">{{ properties.chartCount }}</span>' +
-                '<canvas id="' + id + '" width="70" height="70" style="position: relative; bottom: 39px; right: 20px;"></canvas>' +
-                '</div><div class="arrow" style="border-top: 20px solid {{properties.colour}};"></div></div></div>';
+                '<div class="analog_layout" style="background: {{properties.colour}};">' +
+                 '<span class="analog_layout_text text">{{ properties.chartCount }}</span>' +
+                 '<canvas id="' + id + '" width="70" height="70" class="analog_layout_canvas canvas"></canvas>' +
+                 '<div class="analog_layout_pin pin" style="border-top: 23px solid {{properties.colour}};"></div>'+
+                '</div></div>';
             break;
         case 'landmark_home_ak':
             tmpl = '<div class="landmark_home"><div class="landmark_home_icon fa fa-home"></div></div><canvas style="display:none" id="' + id + '""></canvas>';

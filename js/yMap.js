@@ -84,6 +84,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
     }
 
     function putChosenFeatures(data, features, i) {
+
         for (var key in data) {
             if (key == features[i]) {
                 $scope.chosenFeatures[i] = data[key];
