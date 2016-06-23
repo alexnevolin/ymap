@@ -8,6 +8,12 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
     $scope.chosenFeatures = [];
     $scope.featuresList = [];
 
+    var INEXACT_COORD = 0;
+    var COLOUR_MARK = 1;
+    var NUMBER_VALUE = 2;
+    var CHART = 3;
+    var SPEC_EVENT = 4;
+
     $http.get('../data/mark2.json').success(function(data) {
         $scope.marksJSON = data;
     });
@@ -16,24 +22,30 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
         var marksCount = $scope.marksJSON.houses;
         var markNum = 0;
         var specEvents = {};
+        var greyBorders = {};
 
         for (var i = 0; i < marksCount.length; i++) {
 
             bindFeatures(marksCount[i]);
-            var counter = $scope.chosenFeatures[1];
-            var colour = $scope.chosenFeatures[0];
+            var counter = $scope.chosenFeatures[NUMBER_VALUE];
+            var colour = $scope.chosenFeatures[COLOUR_MARK];
             var id = marksCount[i].mark_id;
             var coords = marksCount[i].mark_coords;
-            specEvents[id] = $scope.chosenFeatures[3];
+            specEvents[id] = $scope.chosenFeatures[SPEC_EVENT];
+            greyBorders[id] = $scope.chosenFeatures[INEXACT_COORD];
 
             $scope.idList[i] = id;
-            $scope.counterList[i] = $scope.chosenFeatures[2];
+            $scope.counterList[i] = $scope.chosenFeatures[CHART];
 
             var chartBuild = function() {
                 markLayout.superclass.build.call(this);
 
                 var markId = "#id_" + $scope.idList[markNum];
+                var borderId = "#br_" + $scope.idList[markNum];
+                var pinId = "#vs_" + $scope.idList[markNum];
                 var currentMark = $(markId);
+                var greyBorder = $(borderId);
+                var pinBorder = $(pinId);
                 var chart = new MarkChart($scope.idList[markNum]);
                 chart.chartType = "ring";
                 chart.data = [+$scope.counterList[markNum], 8 - $scope.counterList[markNum]];
@@ -49,6 +61,20 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                         }
                     }
                     specEvent == "1" ? currentMark.css('visibility','visible') :  currentMark.css('visibility','hidden');
+                }
+
+                if(greyBorder.data('id') == $scope.idList[markNum] ){
+                    var uncoords;
+
+                    for(var key in greyBorders){
+                        if(key == $scope.idList[markNum]){
+                            uncoords = greyBorders[key];
+                        }
+                    }
+                    if(uncoords) {
+                        greyBorder.css('box-shadow', '#ad9c94 0 0 0 2px');
+                        pinBorder.css('visibility', 'visible');
+                    }
                 }
 
                 if (markNum < $scope.marksJSON.houses.length + 1)
@@ -87,7 +113,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
 
         for (var key in data) {
             if (key == features[i]) {
-                $scope.chosenFeatures[i] = data[key];
+                $scope.chosenFeatures[++i] = data[key];
             }
         }
     }
@@ -97,9 +123,12 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
         var position = 0;
 
         for (var key in dataMark) {
-            if (key != "mark_coords" && key != "mark_id" && key != "type") {
+            if (key != "mark_coords" && key != "mark_id" && key != "type" && key != "mark_uncoords") {
                 putChosenFeatures(dataMark[key], features, position);
                 position++;
+            }
+            if (key == "mark_uncoords") {
+                $scope.chosenFeatures[INEXACT_COORD] = dataMark[key];
             }
         }
     }

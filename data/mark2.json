@@ -3,6 +3,7 @@
     "houses": [{
         "type": "analog",
         "mark_coords": { "x": 55.66, "y": 37.55 },
+        "mark_uncoords": true,
         "mark_id": "mark1",
         "mark_colors": {
             "Класс дома": "#5d1919",
@@ -30,6 +31,7 @@
     }, {
         "type": "analog",
         "mark_coords": { "x": 55.77, "y": 37.66 },
+        "mark_uncoords": false,
         "mark_id": "mark2",
         "mark_colors": {
             "Класс дома": "#96ffce",
@@ -57,6 +59,7 @@
     }, {
         "type": "analog",
         "mark_coords": { "x": 55.60, "y": 37.49 },
+        "mark_uncoords": true,
         "mark_id": "mark3",
         "mark_colors": {
             "Класс дома": "#55cf56",
@@ -84,6 +87,7 @@
     }, {
         "type": "analog",
         "mark_coords": { "x": 55.77, "y": 37.43 },
+        "mark_uncoords": false,
         "mark_id": "mark4",
         "mark_colors": {
             "Класс дома": "#30e8e6",
@@ -111,6 +115,7 @@
     }, {
         "type": "analog",
         "mark_coords": { "x": 55.68, "y": 37.70 },
+        "mark_uncoords": false,
         "mark_id": "mark5",
         "mark_colors": {
             "Класс дома": "#e8060f",
@@ -138,6 +143,7 @@
     }, {
         "type": "zc",
         "mark_coords": { "x": 55.65, "y": 37.6 },
+        "mark_uncoords": false,
         "mark_id": "mark6",
         "mark_colors": {
             "Класс дома": "#e8060f",
@@ -165,6 +171,7 @@
     }, {
         "type": "home",
         "mark_coords": { "x": 55.65, "y": 37.77 },
+        "mark_uncoords": false,
         "mark_id": "mark7",
         "mark_colors": {
             "Класс дома": "#e8060f",
@@ -192,6 +199,7 @@
     }, {
         "type": "landmark",
         "mark_coords": { "x": 55.85, "y": 37.73 },
+        "mark_uncoords": false,
         "mark_id": "mark8",
         "mark_colors": {
             "Класс дома": "#ff25eb",
@@ -219,6 +227,7 @@
     }, {
         "type": "object",
         "mark_coords": { "x": 55.8, "y": 37.8 },
+        "mark_uncoords": false,
         "mark_id": "mark9",
         "mark_colors": {
             "Класс дома": "#ff25eb",
@@ -246,6 +255,7 @@
     }, {
         "type": "landmark_home_ak",
         "mark_coords": { "x": 55.80, "y": 37.60 },
+        "mark_uncoords": false,
         "mark_id": "mark10",
         "mark_colors": {
             "Класс дома": "#ff25eb",
@@ -273,6 +283,7 @@
     }, {
         "type": "landmark_home_aknew",
         "mark_coords": { "x": 55.83, "y": 37.65 },
+        "mark_uncoords": false,
         "mark_id": "mark11",
         "mark_colors": {
             "Класс дома": "#ff25eb",
@@ -300,6 +311,7 @@
     }, {
         "type": "zc",
         "mark_coords": { "x": 55.85, "y": 37.83 },
+        "mark_uncoords": false,
         "mark_id": "mark12",
         "mark_colors": {
             "Класс дома": "#96ffce",
