@@ -84,9 +84,10 @@ var getMarkTemplate = function(type,id) {
             break;
         case 'analog':
             tmpl = '<div class="placemark_layout_container">' +
-                '<div class="analog_layout" style="background: {{properties.colour}};">' +
+                '<div class="analog_layout" style="background: {{properties.colour}}; box-shadow: #ad9c94 0px 0px 0px 2px;">' +
                  '<span class="analog_layout_text text">{{ properties.chartCount }}</span>' +
                  '<canvas id="' + id + '" width="70" height="70" class="analog_layout_canvas canvas"></canvas>' +
+                 '<div class="analog_uncoord pin" style="visibility: visible;"></div>'+
                  '<div class="analog_layout_pin pin" style="border-top: 23px solid {{properties.colour}};"></div>'+
                 '</div></div>';
             break;
