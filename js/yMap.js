@@ -27,10 +27,12 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
         for (var i = 0; i < marksCount.length; i++) {
 
             bindFeatures(marksCount[i]);
-            var counter = $scope.chosenFeatures[NUMBER_VALUE];
-            var colour = $scope.chosenFeatures[COLOUR_MARK];
+
             var id = marksCount[i].mark_id;
             var coords = marksCount[i].mark_coords;
+            var counter = $scope.chosenFeatures[NUMBER_VALUE];
+            var colour = $scope.chosenFeatures[COLOUR_MARK];
+
             specEvents[id] = $scope.chosenFeatures[SPEC_EVENT];
             greyBorders[id] = $scope.chosenFeatures[INEXACT_COORD];
 
@@ -47,6 +49,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                 var greyBorder = $(borderId);
                 var pinBorder = $(pinId);
                 var chart = new MarkChart($scope.idList[markNum]);
+
                 chart.chartType = "ring";
                 chart.data = [+$scope.counterList[markNum], 8 - $scope.counterList[markNum]];
                 chart.colors = ['#0FFF2B', '#00ffff'];
@@ -77,9 +80,7 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                     }
                 }
 
-                if (markNum < $scope.marksJSON.houses.length + 1)
-                    markNum++;
-                else markNum = 0;
+                (markNum < $scope.marksJSON.houses.length + 1) ? markNum++ : markNum = 0;
             };
 
             var markLayout = ymaps.templateLayoutFactory.createClass(getMarkTemplate(marksCount[i].type,id), {
@@ -168,38 +169,39 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                 this._mapEventGroup = this.getMap().events.group();
 
                 var myWindow = $("#window"),
-                    features = $("#features");
+                    features = $("#features"),
+                    mapContainer = $("#map_container");
 
-                var cache = $('#window').html();
+                var cache = myWindow.html();
 
                 features.click(function() {
                     myWindow.data("kendoWindow").open();
                     features.fadeOut();
                 });
 
-                $('#window').on('click', '#refreshFeatures', function() {
-                    $('#window').html(cache);
+                myWindow.on('click', '#refreshFeatures', function() {
+                    myWindow.html(cache);
                 });
 
-                $("#map_container").click(function() {
-                    if ($('#features').css('display') == "none") {
+                mapContainer.click(function() {
+                    if (features.css('display') == "none") {
                         myWindow.data("kendoWindow").close();
                     }
                 });
 
                 function defaultFeatures() {
                     var vals = $('.k-radio').map(function(i, el) {
+
                         if ($(el).prop('checked')) {
                             return $(el).val();
                         }
+
                     }).get();
+
                     $scope.featuresList = vals;
-
                 }
-                defaultFeatures();
-                putMarks(map);
 
-                $('#window').on('click', '#sendFeatures', function() {
+                myWindow.on('click', '#sendFeatures', function() {
                     defaultFeatures();
                     map.geoObjects.removeAll();
                     markNum = 0;
@@ -218,6 +220,9 @@ var yMapApp = angular.module("YMap", ["kendo.directives"])
                     ],
                     close: onClose
                 }).data("kendoWindow");
+
+                defaultFeatures();
+                putMarks(map);
             }
 
         });
