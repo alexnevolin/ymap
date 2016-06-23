@@ -224,50 +224,51 @@
 .landmark {
     position: relative;
     top: -44px;
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
     background: transparent;
     border-radius: 100% 100% 0 100%;
     transform: rotateZ(45deg);
-    border: 4px solid #586577;
+    border: 3px solid #586577;
 }
 .landmark_center {
     width: 15px;
     height: 15px;
     background: #586577;
     border-radius: 100%;
-    margin-top: 7px;
-    margin-left: 7px;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 /* landmark end*/
 /*lndmark home ak and aknew start*/
 .landmark_home {
     position: absolute;
-    top: -49px;
-    left: -1px;
-    width: 32px;
-    height: 32px;
+    top: -40px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
     background: transparent;
     border-radius: 100% 100% 0 100%;
     transform: rotateZ(45deg);
-    border: 4px solid #586577;
-    font-size: 24px;
+    border: 3px solid #586577;
+    font-size: 18px;
 }
 .landmark_home_icon {
     width: 16px;
     height: 16px;
     transform: rotateZ(315deg);
     color: #354151;
-    margin-top: 7px;
-    margin-left: 2px;
+    margin-top: 5px;
+    margin-left: 4px;
+    font-size: 24px;
 }
 .landmark_home_aknew_icon {
     width: 16px;
     height: 16px;
     transform: rotateZ(315deg);
     color: #354151;
-    margin-top: 6px;
-    margin-left: 4px;
+    margin-top: 5px;
+    margin-left: 6px;
 }
 /*lndmark home ak and aknew end*/
 
