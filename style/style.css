@@ -226,7 +226,7 @@
     top: -44px;
     width: 26px;
     height: 26px;
-    background: transparent;
+    background: #fff;
     border-radius: 100% 100% 0 100%;
     transform: rotateZ(45deg);
     border: 3px solid #586577;
@@ -247,7 +247,7 @@
     left: 2px;
     width: 26px;
     height: 26px;
-    background: transparent;
+    background: #fff;
     border-radius: 100% 100% 0 100%;
     transform: rotateZ(45deg);
     border: 3px solid #586577;
