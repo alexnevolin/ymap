@@ -101,7 +101,7 @@ var getMarkTemplate = function(type,id) {
                 '<div class="landmark_zc_layout" style="background: #000;">' +
                  '<div class="landmark_zc_layout_left" style="border-right: 6px solid #000;"></div>' +
                  '<div class="landmark_zc_layout_right" style="border-left: 6px solid #000;"></div>' +
-                 '<canvas id="' + id + '" class="canvas" width="70" height="70"></canvas>' +
+                 '<canvas id="' + id + '" class="canvas" width="70" height="70" style="display:none;"></canvas>' +
                  '<div class="landmark_zc_pin" style="border-top: 16px solid #000;"></div>' +
                  '<span class="landmark_zc_ak_text"><i class="landmark_zc_ak_icon fa fa-home"></i></span>'+
                  '<div id="id_'+id+'" data-id="'+id+'" class="zc_trigger" style="display:none;"></div>'+
@@ -112,7 +112,7 @@ var getMarkTemplate = function(type,id) {
                 '<div class="landmark_zc_layout" style="background: #000;">' +
                  '<div class="landmark_zc_layout_left" style="border-right: 6px solid #000;"></div>' +
                  '<div class="landmark_zc_layout_right" style="border-left: 6px solid #000;"></div>' +
-                 '<canvas id="' + id + '" class="canvas" width="70" height="70"></canvas>' +
+                 '<canvas id="' + id + '" class="canvas" width="70" height="70" style="display:none;"></canvas>' +
                  '<div class="landmark_zc_pin" style="border-top: 16px solid #000;"></div>' +
                  '<span class="landmark_zc_ak_text"><i class="landmark_zc_aknew_icon fa fa-building"></i></span>'+
                  '<div id="id_'+id+'" data-id="'+id+'" class="zc_trigger" style="display:none;"></div>'+
